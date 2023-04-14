@@ -14,10 +14,6 @@ function App() {
                     <Progress isAnimating={isLoading} key={location.key} />
                     <div className="App">
                         <TransitionGroup>
-                            {/*
-            Timeout has been increased by 4x from the original version
-            for demo purposes.
-            */}
                             <CSSTransition
                                 classNames="fade"
                                 key={location.key}
@@ -27,7 +23,7 @@ function App() {
                                 onEntered={() => {
                                     setIsLoading(false);
                                 }}
-                                timeout={300}
+                                timeout={200}
                             >
                                 {useRoutes(routes)}
                             </CSSTransition>

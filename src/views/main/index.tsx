@@ -12,7 +12,7 @@ const Main: FC<IProps> = () => {
     const navigate = useNavigate();
     const handleClick = () => {
         console.log('navigate');
-        navigate('/contexify');
+        navigate('/main/contexify');
     };
 
     return (
