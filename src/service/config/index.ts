@@ -6,7 +6,7 @@ if (import.meta.env.PROD) {
     BASE_URL = 'api';
 } else {
     // 开发环境
-    // BASE_URL = 'http://codercba.com:9002';
+    BASE_URL = 'http://127.0.0.1:3000';
 }
 
 export { BASE_URL, TIME_OUT };

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import type { ZMRequestConfig } from './type';
-
+import { notification } from 'antd';
 // 拦截器: 蒙版Loading/token/修改配置
 
 /**
@@ -71,6 +71,10 @@ class ZMRequest {
                     resolve(res);
                 })
                 .catch((err) => {
+                    notification.error({
+                        message: '请求失败',
+                        description: err.message,
+                    });
                     reject(err);
                 });
         });
