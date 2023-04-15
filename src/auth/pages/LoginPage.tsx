@@ -13,7 +13,7 @@ export default function SignInPage() {
         e.preventDefault();
         const form = e.currentTarget;
         const formData = new FormData(form);
-        console.log(formData);
+
         // 将 formData 转换为对象
         const data = Object.fromEntries(formData.entries());
         const res = await zmRequest.post({

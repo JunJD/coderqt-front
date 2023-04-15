@@ -7,7 +7,7 @@ import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
 // 懒加载一级路由
 
-const Main = lazy(() => import('@/views/main'));
+const Main = lazy(() => import('@/layout/main'));
 
 const routes: RouteObject[] = [
     {
