@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 
 /**
+ * xs: '480px',
+ * sm: '576px',
+ * md: '768px'
+ * lg: '992px'
+ * xl: '1200px'
+ * xxl: '1600px'
+ */
+/**
  * 这是一个自定义的hook，用于监听媒体查询的变化，比如：(min-width: 600px) and (max-width: 900px)
  * @param query 媒体查询表达式，比如：(min-width: 600px) and (max-width: 900px)
  * @returns

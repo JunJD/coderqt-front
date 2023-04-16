@@ -5,12 +5,9 @@ import routes from './router';
 import Progress from './compontents/nprogress';
 import './App.less';
 import useMediaQuery from '@/hooks/common/useMediaQuery';
-import { useTheme } from './context/themeContext';
+import ScrollTop from '@/compontents/scrollTop';
 function App() {
-    const { theme } = useTheme();
-
-    const matchMedia = useMediaQuery(theme?.breakpoints?.down('lg'));
-
+    const matchMedia = useMediaQuery('(min-width: 768px)');
     useEffect(() => {
         console.log(matchMedia, 'matchMedia');
     }, [matchMedia]);
@@ -35,7 +32,7 @@ function App() {
                                 }}
                                 timeout={200}
                             >
-                                {useRoutes(routes)}
+                                <ScrollTop>{useRoutes(routes)}</ScrollTop>
                             </CSSTransition>
                         </TransitionGroup>
                     </div>

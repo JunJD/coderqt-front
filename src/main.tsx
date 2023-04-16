@@ -5,7 +5,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './assets/css/index.less';
 import { RecoilRoot } from 'recoil';
-import { ThemeProvider } from '@/context/themeContext';
+import { ThemeProvider } from 'styled-components';
 const Inspect = React.lazy(() => import('inspx'));
 const defaulttheme = {
     color: {
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
                     process.env.NODE_ENV === 'production'
                 }
             >
-                <ThemeProvider defaulttheme={defaulttheme}>
+                <ThemeProvider theme={defaulttheme}>
                     <App />
                 </ThemeProvider>
             </Inspect>
