@@ -6,7 +6,7 @@ import './index.less';
 export default function LandingPage() {
     return (
         <header className="landing-page">
-            <h1 className="main-title text-center">coderQt</h1>
+            <h1 className="brand main-title text-center">coderQt</h1>
             <p className="main-para text-center">现在加入我们</p>
             <div className="buttons text-center">
                 <Link to="/login">

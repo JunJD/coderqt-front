@@ -14,11 +14,6 @@ const Progress: React.FC<{ isAnimating: boolean }> = ({ isAnimating }) => {
             isFinished={isFinished}
         >
             <Bar animationDuration={animationDuration} progress={progress} />
-            {/*
-      This example doesn't use a spinner component so the UI stays
-      tidy. You're free to render whatever is appropriate for your
-      use-case.
-      */}
         </Container>
     );
 };

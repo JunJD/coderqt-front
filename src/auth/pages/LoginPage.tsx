@@ -43,33 +43,33 @@ export default function SignInPage() {
 
     return (
         <div className="text-center">
-            <h2>Sign in to us</h2>
+            <h2>登录</h2>
             <form onSubmit={accessPermission}>
                 <p>
-                    <label>phone or email address</label>
+                    <label>手机号/邮箱</label>
                     <br />
                     <input type="text" name="phone" required />
                 </p>
                 <p>
-                    <label>Password</label>
+                    <label>密码</label>
                     <Link to="/forget-password">
-                        <label className="right-label">Forget password?</label>
+                        <label className="right-label">忘记密码?</label>
                     </Link>
                     <br />
                     <input type="password" name="password" required />
                 </p>
                 <p>
                     <button id="sub_btn" type="submit">
-                        Login
+                        登录
                     </button>
                 </p>
             </form>
             <footer>
                 <p>
-                    First time? <Link to="/register">Create an account</Link>.
+                    第一次? <Link to="/register">创建账号</Link>.
                 </p>
                 <p>
-                    <Link to="/">Back to Homepage</Link>.
+                    <Link to="/landingpage">回到主页</Link>.
                 </p>
             </footer>
         </div>

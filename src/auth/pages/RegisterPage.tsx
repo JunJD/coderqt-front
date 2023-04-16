@@ -14,21 +14,21 @@ export default function SignUpPage() {
 
     return (
         <div className="text-center m-5-auto">
-            <h2>Join us</h2>
-            <h5>Create your personal account</h5>
+            <h2>注册</h2>
+            {/* <h5>创建属于你的账户</h5> */}
             <form onSubmit={registerAccount}>
                 <p>
-                    <label>Username</label>
+                    <label>用户名</label>
                     <br />
                     <input type="text" name="first_name" required />
                 </p>
                 <p>
-                    <label>Email address</label>
+                    <label>邮箱地址</label>
                     <br />
                     <input type="email" name="email" required />
                 </p>
                 <p>
-                    <label>Password</label>
+                    <label>密码</label>
                     <br />
                     <input type="password" name="password" required />
                 </p>
@@ -40,26 +40,26 @@ export default function SignUpPage() {
                         required
                     />{' '}
                     <span>
-                        I agree all statements in{' '}
+                        我同意xxxxx{' '}
                         <a
                             href="register"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            terms of service
+                            服务条款
                         </a>
                     </span>
                     .
                 </p>
                 <p>
                     <button id="sub_btn" type="submit">
-                        Register
+                        注册
                     </button>
                 </p>
             </form>
             <footer>
                 <p>
-                    <Link to="/">Back to Homepage</Link>.
+                    <Link to="/landingpage">返回主页</Link>.
                 </p>
             </footer>
         </div>
