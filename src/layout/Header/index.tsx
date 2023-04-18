@@ -33,13 +33,15 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerToggle }) => {
         <Toolbar>
             <IconButton
                 disableRipple
-                aria-label="open drawer"
+                aria-label="打开菜单"
                 onClick={handleDrawerToggle}
+                // edge="start"是指按钮在左边
                 edge="start"
-                color="secondary"
+                // sx是指样式
                 sx={{
                     color: 'text.primary',
                     bgcolor: open ? iconBackColorOpen : iconBackColor,
+                    // ml: { xs: 0, lg: -2 }是指margin-left: 0, lg是指大于lg的屏幕
                     ml: { xs: 0, lg: -2 },
                 }}
             >

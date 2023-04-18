@@ -1,5 +1,5 @@
 // material-ui
-import { Box, IconButton, Link, useMediaQuery } from '@mui/material';
+import { Box, IconButton, Link, useMediaQuery, useTheme } from '@mui/material';
 import { GithubOutlined } from '@ant-design/icons';
 
 // project import
@@ -11,8 +11,8 @@ import MobileSection from './MobileSection';
 // ==============================|| HEADER - CONTENT ||============================== //
 
 const HeaderContent = () => {
-    // const theme = useTheme();
-    const matchesXs = useMediaQuery((theme) => theme.breakpoints.down('md'));
+    const theme = useTheme();
+    const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <>
@@ -21,11 +21,15 @@ const HeaderContent = () => {
 
             <IconButton
                 component={Link}
-                href="https://github.com/codedthemes/mantis-free-react-admin-template"
+                href="https://github.com/JunJD"
                 target="_blank"
+                // 这是一个material-ui的属性，作用是去除点击时的水波纹效果
                 disableRipple
+                // 这是一个material-ui的属性，值为secondary时，背景色为主题色，字体颜色为白色，
+                // 值为primary时，背景色为白色，字体颜色为主题色
                 color="secondary"
-                title="Download Free Version"
+                // 这是一个material-ui的属性，作用是设置鼠标悬浮时的提示文字
+                title="欢迎访问我的github"
                 sx={{ color: 'text.primary', bgcolor: 'grey.100' }}
             >
                 <GithubOutlined />

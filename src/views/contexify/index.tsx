@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material/styles';
 import {
     Menu,
     Item,
@@ -16,6 +17,7 @@ function Contexify() {
     // props是自定义的属性，id是菜单的id，onClick是点击菜单项的回调函数
     // 它返回一个对象，对象里面有一个属性show，这个属性是一个函数，
     // 这个函数传入一个对象，对象里面有两个属性，一个是event，一个是props，event是鼠标事件，props是自定义的属性
+    const theme = useTheme();
     const { show } = useContextMenu({
         id: MENU_ID,
     });
@@ -45,7 +47,7 @@ function Contexify() {
     return (
         <div>
             <p style={{ cursor: 'pointer' }} onContextMenu={handleContextMenu}>
-                lorem ipsum blabladhasi blaghs blah
+                {theme.breakpoints.values.sm}
             </p>
             <Menu id={MENU_ID}>
                 <Item id="copy" onClick={handleItemClick}>

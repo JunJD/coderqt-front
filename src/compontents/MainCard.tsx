@@ -30,7 +30,7 @@ interface MainCardProps {
     darkTitle?: boolean;
     divider?: boolean;
     elevation?: number;
-    secondary?: boolean;
+    secondary?: React.ReactNode;
     shadow?: boolean;
     sx?: object;
     title?: string;
@@ -40,7 +40,6 @@ interface MainCardProps {
 const MainCard = (
     {
         border = true,
-        boxShadow,
         children,
         content = true,
         contentSX = {},
@@ -48,7 +47,6 @@ const MainCard = (
         divider = true,
         elevation,
         secondary,
-        shadow,
         sx = {},
         title,
         codeHighlight,
@@ -57,8 +55,6 @@ const MainCard = (
     ref: ForwardedRef<any>,
 ) => {
     const theme = useTheme();
-
-    boxShadow = theme.palette.mode === 'dark' ? boxShadow || true : boxShadow;
 
     return (
         <Card
@@ -73,15 +69,6 @@ const MainCard = (
                     theme.palette.mode === 'dark'
                         ? theme.palette.divider
                         : theme.palette.grey[800],
-                boxShadow:
-                    boxShadow && (!border || theme.palette.mode === 'dark')
-                        ? shadow /*|| theme.customShadows.z1*/
-                        : 'inherit',
-                ':hover': {
-                    boxShadow: boxShadow
-                        ? shadow /*|| theme.customShadows.z1*/
-                        : 'inherit',
-                },
                 '& pre': {
                     m: 0,
                     p: '16px !important',

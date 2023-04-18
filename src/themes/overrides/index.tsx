@@ -1,4 +1,5 @@
 // third-party
+import { Theme } from '@mui/material/styles';
 import { merge } from 'lodash';
 
 // project import
@@ -20,7 +21,7 @@ import Typography from './Typography';
 
 // ==============================|| OVERRIDES - MAIN ||============================== //
 
-export default function ComponentsOverrides(theme) {
+export default function ComponentsOverrides(theme: Theme) {
     return merge(
         Button(theme),
         Badge(theme),

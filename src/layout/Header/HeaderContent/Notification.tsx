@@ -32,6 +32,7 @@ import {
     MessageOutlined,
     SettingOutlined,
 } from '@ant-design/icons';
+import React from 'react';
 
 // sx styles
 const avatarSX = {
@@ -46,23 +47,54 @@ const actionSX = {
     top: 'auto',
     right: 'auto',
     alignSelf: 'flex-start',
-
     transform: 'none',
 };
 
-// ==============================|| HEADER CONTENT - NOTIFICATION ||============================== //
-
 const Notification = () => {
+    const [notificationQueue, setNotification] = useState([
+        {
+            id: 1,
+            type: 'success',
+            title: '新订单已收到',
+            subtitle: '1小时前',
+            icon: <GiftOutlined />,
+            secondary: 'Nike Air Max 270',
+        },
+        {
+            id: 2,
+            type: 'warning',
+            title: '新消息',
+            subtitle: '2小时前',
+            icon: <MessageOutlined />,
+            secondary: '来自约翰·多伊的：你好，今天晚上有...',
+        },
+        {
+            id: 3,
+            type: 'error',
+            title: '您的物品已发货',
+            subtitle: '5小时前',
+            icon: <SettingOutlined />,
+            secondary: 'Nike air max 270',
+        },
+        {
+            id: 4,
+            type: 'primary',
+            title: '新订单已收到',
+            subtitle: '1天前',
+            icon: <GiftOutlined />,
+            secondary: 'Nike classic cortez',
+        },
+    ]);
     const theme = useTheme();
     const matchesXs = useMediaQuery(theme.breakpoints.down('md'));
 
-    const anchorRef = useRef(null);
+    const anchorRef = useRef<any>(null);
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClose = (event) => {
+    const handleClose = (event: MouseEvent | TouchEvent) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
@@ -113,7 +145,7 @@ const Notification = () => {
                     <Transitions type="fade" in={open} {...TransitionProps}>
                         <Paper
                             sx={{
-                                boxShadow: theme.customShadows.z1,
+                                boxShadow: theme.shadows[3],
                                 width: '100%',
                                 minWidth: 285,
                                 maxWidth: 420,
@@ -124,7 +156,7 @@ const Notification = () => {
                         >
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MainCard
-                                    title="Notification"
+                                    title="消息队列"
                                     elevation={0}
                                     border={false}
                                     content={false}
@@ -152,159 +184,41 @@ const Notification = () => {
                                             },
                                         }}
                                     >
-                                        <ListItemButton>
-                                            <ListItemAvatar>
-                                                <Avatar
-                                                    sx={{
-                                                        color: 'success.main',
-                                                        bgcolor:
-                                                            'success.lighter',
-                                                    }}
-                                                >
-                                                    <GiftOutlined />
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <ListItemText
-                                                primary={
-                                                    <Typography variant="h6">
-                                                        It&apos;s{' '}
-                                                        <Typography
-                                                            component="span"
-                                                            variant="subtitle1"
+                                        {notificationQueue.map((item) => (
+                                            <React.Fragment key={item.id}>
+                                                <ListItemButton>
+                                                    <ListItemAvatar>
+                                                        <Avatar
+                                                            sx={{
+                                                                color: `${item.type}.main`,
+                                                                bgcolor: `${item.type}.lighter`,
+                                                            }}
                                                         >
-                                                            Cristina
-                                                            danny&apos;s
-                                                        </Typography>{' '}
-                                                        birthday today.
-                                                    </Typography>
-                                                }
-                                                secondary="2 min ago"
-                                            />
-                                            <ListItemSecondaryAction>
-                                                <Typography
-                                                    variant="caption"
-                                                    noWrap
-                                                >
-                                                    3:00 AM
-                                                </Typography>
-                                            </ListItemSecondaryAction>
-                                        </ListItemButton>
-                                        <Divider />
-                                        <ListItemButton>
-                                            <ListItemAvatar>
-                                                <Avatar
-                                                    sx={{
-                                                        color: 'primary.main',
-                                                        bgcolor:
-                                                            'primary.lighter',
-                                                    }}
-                                                >
-                                                    <MessageOutlined />
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <ListItemText
-                                                primary={
-                                                    <Typography variant="h6">
+                                                            {item.icon}
+                                                        </Avatar>
+                                                    </ListItemAvatar>
+                                                    <ListItemText
+                                                        primary={
+                                                            <Typography variant="h6">
+                                                                {item.title}
+                                                            </Typography>
+                                                        }
+                                                        secondary={
+                                                            item.secondary
+                                                        }
+                                                    />
+                                                    <ListItemSecondaryAction>
                                                         <Typography
-                                                            component="span"
-                                                            variant="subtitle1"
+                                                            variant="caption"
+                                                            noWrap
                                                         >
-                                                            Aida Burg
-                                                        </Typography>{' '}
-                                                        commented your post.
-                                                    </Typography>
-                                                }
-                                                secondary="5 August"
-                                            />
-                                            <ListItemSecondaryAction>
-                                                <Typography
-                                                    variant="caption"
-                                                    noWrap
-                                                >
-                                                    6:00 PM
-                                                </Typography>
-                                            </ListItemSecondaryAction>
-                                        </ListItemButton>
-                                        <Divider />
-                                        <ListItemButton>
-                                            <ListItemAvatar>
-                                                <Avatar
-                                                    sx={{
-                                                        color: 'error.main',
-                                                        bgcolor:
-                                                            'error.lighter',
-                                                    }}
-                                                >
-                                                    <SettingOutlined />
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <ListItemText
-                                                primary={
-                                                    <Typography variant="h6">
-                                                        Your Profile is Complete
-                                                        &nbsp;
-                                                        <Typography
-                                                            component="span"
-                                                            variant="subtitle1"
-                                                        >
-                                                            60%
-                                                        </Typography>{' '}
-                                                    </Typography>
-                                                }
-                                                secondary="7 hours ago"
-                                            />
-                                            <ListItemSecondaryAction>
-                                                <Typography
-                                                    variant="caption"
-                                                    noWrap
-                                                >
-                                                    2:45 PM
-                                                </Typography>
-                                            </ListItemSecondaryAction>
-                                        </ListItemButton>
-                                        <Divider />
-                                        <ListItemButton>
-                                            <ListItemAvatar>
-                                                <Avatar
-                                                    sx={{
-                                                        color: 'primary.main',
-                                                        bgcolor:
-                                                            'primary.lighter',
-                                                    }}
-                                                >
-                                                    C
-                                                </Avatar>
-                                            </ListItemAvatar>
-                                            <ListItemText
-                                                primary={
-                                                    <Typography variant="h6">
-                                                        <Typography
-                                                            component="span"
-                                                            variant="subtitle1"
-                                                        >
-                                                            Cristina Danny
-                                                        </Typography>{' '}
-                                                        invited to join{' '}
-                                                        <Typography
-                                                            component="span"
-                                                            variant="subtitle1"
-                                                        >
-                                                            Meeting.
+                                                            {item.subtitle}
                                                         </Typography>
-                                                    </Typography>
-                                                }
-                                                secondary="Daily scrum meeting time"
-                                            />
-                                            <ListItemSecondaryAction>
-                                                <Typography
-                                                    variant="caption"
-                                                    noWrap
-                                                >
-                                                    9:10 PM
-                                                </Typography>
-                                            </ListItemSecondaryAction>
-                                        </ListItemButton>
-                                        <Divider />
+                                                    </ListItemSecondaryAction>
+                                                </ListItemButton>
+                                                <Divider />
+                                            </React.Fragment>
+                                        ))}
                                         <ListItemButton
                                             sx={{
                                                 textAlign: 'center',
@@ -317,7 +231,7 @@ const Notification = () => {
                                                         variant="h6"
                                                         color="primary"
                                                     >
-                                                        View All
+                                                        查看所有
                                                     </Typography>
                                                 }
                                             />

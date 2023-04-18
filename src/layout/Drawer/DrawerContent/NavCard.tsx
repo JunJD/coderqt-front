@@ -1,37 +1,28 @@
 // material-ui
-import { Button, CardMedia, Link, Stack, Typography } from '@mui/material';
+import { Button, CardMedia, Stack, Typography } from '@mui/material';
 
 // project import
 import MainCard from './../.././../compontents/MainCard';
 
 // assets
 import avatar from '@/assets/cool-background.png';
-// import AnimateButton from 'components/@extended/AnimateButton';
-
-// ==============================|| DRAWER CONTENT - NAVIGATION CARD ||============================== //
+import AnimateButton from './../../../compontents/@extended/AnimateButton';
 
 const NavCard = () => (
     <MainCard sx={{ bgcolor: 'grey.50', m: 3 }}>
         <Stack alignItems="center" spacing={2.5}>
             <CardMedia component="img" image={avatar} sx={{ width: 112 }} />
             <Stack alignItems="center">
-                <Typography variant="h5">Mantis Pro</Typography>
+                <Typography variant="h5">coder-qt</Typography>
                 <Typography variant="h6" color="secondary">
-                    Checkout pro features
+                    持续codeing...
                 </Typography>
             </Stack>
-            {/* <AnimateButton> */}
-            <Button
-                component={Link}
-                target="_blank"
-                href="https://mantisdashboard.io"
-                variant="contained"
-                color="success"
-                size="small"
-            >
-                Pro
-            </Button>
-            {/* </AnimateButton> */}
+            <AnimateButton type="scale">
+                <Button variant="contained" color="success" size="small">
+                    联系我
+                </Button>
+            </AnimateButton>
         </Stack>
     </MainCard>
 );

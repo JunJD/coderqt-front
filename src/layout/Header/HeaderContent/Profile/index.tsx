@@ -85,7 +85,7 @@ const Profile = () => {
 
     const [value, setValue] = useState(0);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (event: React.SyntheticEvent, newValue: any) => {
         setValue(newValue);
     };
 
@@ -117,7 +117,7 @@ const Profile = () => {
                         src={avatar1}
                         sx={{ width: 32, height: 32 }}
                     />
-                    <Typography variant="subtitle1">John Doe</Typography>
+                    <Typography variant="subtitle1">Coder Jun</Typography>
                 </Stack>
             </ButtonBase>
             <Popper
