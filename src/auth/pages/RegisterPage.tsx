@@ -13,7 +13,7 @@ export default function SignUpPage() {
     };
 
     return (
-        <div className="text-center m-5-auto">
+        <div style={{ paddingTop: '10vh' }} className="text-center m-5-auto">
             <h2>注册</h2>
             {/* <h5>创建属于你的账户</h5> */}
             <form onSubmit={registerAccount}>

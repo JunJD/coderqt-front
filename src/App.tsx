@@ -14,12 +14,6 @@ function App() {
     const matchMedia = useMediaQuery('(min-width: 768px)');
     useEffect(() => {
         console.log(matchMedia, 'matchMedia');
-        // 获取html标签，并给html标签的font-size赋值
-        const html = document.querySelector('html');
-        if (html) {
-            html.style.paddingRight = `calc(100vw - ${window.innerWidth}px)`;
-            html.style.overflow = 'hidden';
-        }
     }, [matchMedia]);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +36,7 @@ function App() {
                                     onExited={() => {
                                         setIsLoading(false);
                                     }}
-                                    timeout={600}
+                                    timeout={300}
                                 >
                                     <ScrollTop>{useRoutes(routes)}</ScrollTop>
                                 </CSSTransition>

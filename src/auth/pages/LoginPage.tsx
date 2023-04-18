@@ -42,7 +42,7 @@ export default function SignInPage() {
     }, [auth.token, navigator]);
 
     return (
-        <div className="text-center">
+        <div style={{ paddingTop: '10vh' }} className="text-center">
             <h2>登录</h2>
             <form onSubmit={accessPermission}>
                 <p>

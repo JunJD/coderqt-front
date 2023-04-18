@@ -18,6 +18,9 @@
     },
     "dependencies": {
         "@ant-design/icons": "^5.0.1",
+        "@emotion/react": "^11.10.6",
+        "@emotion/styled": "^11.10.6",
+        "@mui/material": "^5.12.1",
         "@tanem/react-nprogress": "^5.0.33",
         "@types/axios": "^0.14.0",
         "@types/node": "^18.14.6",
