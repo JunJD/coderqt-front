@@ -10,6 +10,7 @@ import Progress from './compontents/nprogress';
 import './App.less';
 import useMediaQuery from '@/hooks/common/useMediaQuery';
 import ScrollTop from '@/compontents/scrollTop';
+import ThemeCustomization from './themes';
 function App() {
     const matchMedia = useMediaQuery('(min-width: 768px)');
     useEffect(() => {
@@ -38,7 +39,11 @@ function App() {
                                     }}
                                     timeout={300}
                                 >
-                                    <ScrollTop>{useRoutes(routes)}</ScrollTop>
+                                    <ThemeCustomization>
+                                        <ScrollTop>
+                                            {useRoutes(routes)}
+                                        </ScrollTop>
+                                    </ThemeCustomization>
                                 </CSSTransition>
                             </SwitchTransition>
                         </TransitionGroup>

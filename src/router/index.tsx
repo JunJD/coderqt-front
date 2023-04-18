@@ -7,7 +7,7 @@ import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
 // 懒加载一级路由
 
-const Main = lazy(() => import('@/layout/main'));
+const MainLayout = lazy(() => import('@/layout/index'));
 
 const routes: RouteObject[] = [
     {
@@ -28,7 +28,7 @@ const routes: RouteObject[] = [
     },
     {
         path: '/main',
-        element: <Main></Main>,
+        element: <MainLayout></MainLayout>,
         children: [
             {
                 path: '/main/contexify',
