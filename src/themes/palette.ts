@@ -41,19 +41,39 @@ const Palette = (mode: PaletteMode) => {
                 white: '#fff',
             },
             ...paletteColor,
-            text: {
-                primary: paletteColor.grey[700],
-                secondary: paletteColor.grey[500],
-                disabled: paletteColor.grey[400],
-            },
-            action: {
-                disabled: paletteColor.grey[300],
-            },
-            divider: paletteColor.grey[200],
-            background: {
-                paper: paletteColor.grey[0],
-                default: paletteColor.grey.A50,
-            },
+
+            // 此处可以自定义主题色，我目前对于light和dark模式都使用了同一套主题色
+            ...(mode === 'light'
+                ? {
+                      text: {
+                          primary: paletteColor.grey[700],
+                          secondary: paletteColor.grey[500],
+                          disabled: paletteColor.grey[400],
+                      },
+                      action: {
+                          disabled: paletteColor.grey[300],
+                      },
+                      divider: paletteColor.grey[200],
+                      background: {
+                          paper: paletteColor.grey[0],
+                          default: paletteColor.grey.A50,
+                      },
+                  }
+                : {
+                      text: {
+                          primary: paletteColor.grey[700],
+                          secondary: paletteColor.grey[500],
+                          disabled: paletteColor.grey[400],
+                      },
+                      action: {
+                          disabled: paletteColor.grey[300],
+                      },
+                      divider: paletteColor.grey[200],
+                      background: {
+                          paper: paletteColor.grey[0],
+                          default: paletteColor.grey.A50,
+                      },
+                  }),
         },
     });
 };

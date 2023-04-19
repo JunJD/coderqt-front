@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { message } from 'antd';
 export const authStore = atom({
-    key: 'mainStore',
+    key: 'authStore',
     default: {
         token: '',
         userInfo: {},

@@ -70,6 +70,10 @@ const MainCard = (
                     theme.palette.mode === 'dark'
                         ? theme.palette.divider
                         : theme.palette.grey[800],
+                // bgcolor:
+                //     theme.palette.mode === 'dark'
+                //         ? theme.palette.background.default
+                //         : theme.palette.background.paper,
                 '& pre': {
                     m: 0,
                     p: '16px !important',

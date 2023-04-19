@@ -11,14 +11,18 @@ import Typography from './typography';
 import CustomShadows from './shadows';
 // 自定义组件
 import componentsOverride from './overrides';
+import { useRecoilValue } from 'recoil';
+import { mainStore } from '@/store/main';
 
 interface ThemeCustomizationProps {
     children: React.ReactNode;
 }
 
 const ThemeCustomization: FC<ThemeCustomizationProps> = ({ children }) => {
+    const { light } = useRecoilValue(mainStore);
+
     // 主题
-    const theme = Palette('light');
+    const theme = Palette(light ? 'light' : 'dark');
     // 字体
     const themeTypography = Typography(`'Public Sans', sans-serif`);
     // 阴影

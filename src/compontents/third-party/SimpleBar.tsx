@@ -7,6 +7,7 @@ import { Box } from '@mui/material';
 // third-party
 import SimpleBar from 'simplebar-react';
 import { BrowserView, MobileView } from 'react-device-detect';
+import { FC } from 'react';
 
 // root style
 const RootStyle = styled(BrowserView)({
@@ -37,9 +38,16 @@ const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
     },
 }));
 
-// ==============================|| SIMPLE SCROLL BAR  ||============================== //
+interface SimpleBarScrollProps {
+    children: React.ReactNode;
+    sx: object;
+}
 
-export default function SimpleBarScroll({ children, sx, ...other }) {
+const SimpleBarScroll: FC<SimpleBarScrollProps> = ({
+    children,
+    sx,
+    ...other
+}) => {
     return (
         <>
             <RootStyle>
@@ -59,9 +67,6 @@ export default function SimpleBarScroll({ children, sx, ...other }) {
             </MobileView>
         </>
     );
-}
-
-SimpleBarScroll.propTypes = {
-    children: PropTypes.node,
-    sx: PropTypes.object,
 };
+
+export default SimpleBarScroll;
