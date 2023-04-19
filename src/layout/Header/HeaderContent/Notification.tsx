@@ -145,7 +145,7 @@ const Notification = () => {
                     <Transitions type="fade" in={open} {...TransitionProps}>
                         <Paper
                             sx={{
-                                boxShadow: theme.shadows[3],
+                                boxShadow: theme.shadows[2],
                                 width: '100%',
                                 minWidth: 285,
                                 maxWidth: 420,

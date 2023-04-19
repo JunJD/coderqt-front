@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -9,6 +8,7 @@ import {
     ButtonBase,
     CardContent,
     ClickAwayListener,
+    Direction,
     Grid,
     IconButton,
     Paper,
@@ -26,15 +26,26 @@ import ProfileTab from './ProfileTab';
 import SettingTab from './SettingTab';
 
 // assets
-import avatar1 from './../../../../assets/cool-background.png';
+import Lottie from './../../../../compontents/lottie';
+import JSONData from './../../../../../public/137299-code-or-terminal.json';
+
 import {
     LogoutOutlined,
     SettingOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import { authStore } from '@/store/auth';
+import { useResetRecoilState } from 'recoil';
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: any;
+    value: any;
+    dir?: Direction;
+}
 
 // tab panel wrapper
-function TabPanel({ children, value, index, ...other }) {
+const TabPanel: FC<TabPanelProps> = ({ children, value, index, ...other }) => {
     return (
         <div
             role="tabpanel"
@@ -46,15 +57,9 @@ function TabPanel({ children, value, index, ...other }) {
             {value === index && children}
         </div>
     );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
+function a11yProps(index: number) {
     return {
         id: `profile-tab-${index}`,
         'aria-controls': `profile-tabpanel-${index}`,
@@ -65,18 +70,18 @@ function a11yProps(index) {
 
 const Profile = () => {
     const theme = useTheme();
-
+    const resetAuth = useResetRecoilState(authStore);
     const handleLogout = async () => {
-        // logout
+        resetAuth();
     };
 
-    const anchorRef = useRef(null);
+    const anchorRef = useRef<any>(null);
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClose = (event) => {
+    const handleClose = (event: MouseEvent | TouchEvent) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
@@ -112,11 +117,13 @@ const Profile = () => {
                     alignItems="center"
                     sx={{ p: 0.5 }}
                 >
-                    <Avatar
-                        alt="profile user"
-                        src={avatar1}
-                        sx={{ width: 32, height: 32 }}
-                    />
+                    <Avatar alt="profile user" sx={{ width: 32, height: 32 }}>
+                        <Lottie
+                            animationData={JSONData}
+                            height={60}
+                            width={60}
+                        />
+                    </Avatar>
                     <Typography variant="subtitle1">Coder Jun</Typography>
                 </Stack>
             </ButtonBase>
@@ -143,7 +150,7 @@ const Profile = () => {
                         {open && (
                             <Paper
                                 sx={{
-                                    boxShadow: theme.customShadows.z1,
+                                    boxShadow: theme.shadows[2],
                                     width: 290,
                                     minWidth: 240,
                                     maxWidth: 290,
@@ -172,12 +179,19 @@ const Profile = () => {
                                                     >
                                                         <Avatar
                                                             alt="profile user"
-                                                            src={avatar1}
                                                             sx={{
                                                                 width: 32,
                                                                 height: 32,
                                                             }}
-                                                        />
+                                                        >
+                                                            <Lottie
+                                                                animationData={
+                                                                    JSONData
+                                                                }
+                                                                height={60}
+                                                                width={60}
+                                                            />
+                                                        </Avatar>
                                                         <Stack>
                                                             <Typography variant="h6">
                                                                 John Doe

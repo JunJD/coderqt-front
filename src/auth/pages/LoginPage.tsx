@@ -1,5 +1,5 @@
 import zmRequest from '@/service';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { authStore } from '@/store/auth';
@@ -7,10 +7,17 @@ import './index.less';
 
 export default function SignInPage() {
     const [auth, setAuth] = useRecoilState(authStore);
-
+    const noserver = useRef(import.meta.env.MODE === 'no-server');
     const navigator = useNavigate();
     const accessPermission = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (noserver.current) {
+            setAuth({
+                ...auth,
+                token: '123456',
+            });
+            return;
+        }
         const form = e.currentTarget;
         const formData = new FormData(form);
 
@@ -37,7 +44,7 @@ export default function SignInPage() {
 
     useEffect(() => {
         if (auth.token) {
-            navigator('/main');
+            navigator('/main/contexify');
         }
     }, [auth.token, navigator]);
 
