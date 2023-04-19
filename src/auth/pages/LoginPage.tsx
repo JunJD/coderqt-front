@@ -26,7 +26,7 @@ export default function SignInPage() {
         const res = await zmRequest.post({
             url: '/auth/login',
             data: {
-                phone: data.phone,
+                phoneNumber: data.phoneNumber,
                 password: data.password,
             },
         });
@@ -35,7 +35,7 @@ export default function SignInPage() {
                 ...auth,
                 token: res.result.accessToken,
                 userInfo: {
-                    phone: res.result.sub,
+                    phoneNumber: res.result.sub,
                     username: res.result.username,
                 },
             });
@@ -55,7 +55,7 @@ export default function SignInPage() {
                 <p>
                     <label>手机号/邮箱</label>
                     <br />
-                    <input type="text" name="phone" required />
+                    <input type="text" name="phoneNumber" required />
                 </p>
                 <p>
                     <label>密码</label>

@@ -14,8 +14,7 @@ const LoaderWrapper = styled('div')(({ theme }) => ({
     },
 }));
 
-// ==============================|| Loader ||============================== //
-
+// 这个组件是用来显示加载动画的，当页面加载时，会显示这个组件
 const Loader = () => (
     <LoaderWrapper>
         <LinearProgress color="primary" />

@@ -1,5 +1,4 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -21,11 +20,18 @@ import {
 
 // ==============================|| HEADER PROFILE - PROFILE TAB ||============================== //
 
-const ProfileTab = ({ handleLogout }) => {
+interface ProfileTabProps {
+    handleLogout: () => void;
+}
+
+const ProfileTab: FC<ProfileTabProps> = ({ handleLogout }) => {
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const handleListItemClick = (event, index) => {
+    const handleListItemClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        index: number,
+    ) => {
         setSelectedIndex(index);
     };
 
@@ -47,7 +53,7 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <EditOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Edit Profile" />
+                <ListItemText primary="编辑个人信息" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 1}
@@ -56,7 +62,7 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <UserOutlined />
                 </ListItemIcon>
-                <ListItemText primary="View Profile" />
+                <ListItemText primary="查看个人信息" />
             </ListItemButton>
 
             <ListItemButton
@@ -66,7 +72,7 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <ProfileOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Social Profile" />
+                <ListItemText primary="关联信息" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 4}
@@ -75,7 +81,7 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <WalletOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Billing" />
+                <ListItemText primary="账单" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}
@@ -84,14 +90,10 @@ const ProfileTab = ({ handleLogout }) => {
                 <ListItemIcon>
                     <LogoutOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="退出登录" />
             </ListItemButton>
         </List>
     );
-};
-
-ProfileTab.propTypes = {
-    handleLogout: PropTypes.func,
 };
 
 export default ProfileTab;

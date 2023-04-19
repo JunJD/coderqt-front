@@ -66,8 +66,6 @@ function a11yProps(index: number) {
     };
 }
 
-// ==============================|| HEADER CONTENT - PROFILE ||============================== //
-
 const Profile = () => {
     const theme = useTheme();
     const resetAuth = useResetRecoilState(authStore);
@@ -194,13 +192,13 @@ const Profile = () => {
                                                         </Avatar>
                                                         <Stack>
                                                             <Typography variant="h6">
-                                                                John Doe
+                                                                Code Jun
                                                             </Typography>
                                                             <Typography
                                                                 variant="body2"
                                                                 color="textSecondary"
                                                             >
-                                                                UI/UX Designer
+                                                                超级管理员
                                                             </Typography>
                                                         </Stack>
                                                     </Stack>
@@ -251,7 +249,7 @@ const Profile = () => {
                                                                     }}
                                                                 />
                                                             }
-                                                            label="Profile"
+                                                            label="个人信息"
                                                             {...a11yProps(0)}
                                                         />
                                                         <Tab
@@ -275,7 +273,7 @@ const Profile = () => {
                                                                     }}
                                                                 />
                                                             }
-                                                            label="Setting"
+                                                            label="设置"
                                                             {...a11yProps(1)}
                                                         />
                                                     </Tabs>

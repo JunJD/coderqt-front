@@ -24,7 +24,10 @@ const SettingTab = () => {
     const theme = useTheme();
 
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const handleListItemClick = (event, index) => {
+    const handleListItemClick = (
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+        index: number,
+    ) => {
         setSelectedIndex(index);
     };
 
@@ -46,7 +49,7 @@ const SettingTab = () => {
                 <ListItemIcon>
                     <QuestionCircleOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Support" />
+                <ListItemText primary="支持" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 1}
@@ -55,7 +58,7 @@ const SettingTab = () => {
                 <ListItemIcon>
                     <UserOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Account Settings" />
+                <ListItemText primary="帐户设置" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 2}
@@ -64,7 +67,7 @@ const SettingTab = () => {
                 <ListItemIcon>
                     <LockOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Privacy Center" />
+                <ListItemText primary="隐私中心" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 3}
@@ -73,7 +76,7 @@ const SettingTab = () => {
                 <ListItemIcon>
                     <CommentOutlined />
                 </ListItemIcon>
-                <ListItemText primary="Feedback" />
+                <ListItemText primary="反馈" />
             </ListItemButton>
             <ListItemButton
                 selected={selectedIndex === 4}
@@ -82,7 +85,7 @@ const SettingTab = () => {
                 <ListItemIcon>
                     <UnorderedListOutlined />
                 </ListItemIcon>
-                <ListItemText primary="History" />
+                <ListItemText primary="历史" />
             </ListItemButton>
         </List>
     );

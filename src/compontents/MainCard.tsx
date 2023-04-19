@@ -37,6 +37,7 @@ interface MainCardProps {
     codeHighlight?: boolean;
 }
 
+// 自定义的MainCard组件，主要是为了实现代码高亮，其中的代码高亮部分暂时注释掉了
 const MainCard = (
     {
         border = true,
