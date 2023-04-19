@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'normalize.css';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import './assets/css/index.less';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
+
+import App from './App';
+
+// 样式
+import 'normalize.css';
+import './assets/css/index.less';
+
 const Inspect = React.lazy(() => import('inspx'));
+
 const defaulttheme = {
     color: {
         primary: '#1890ff',
@@ -27,12 +32,7 @@ const defaulttheme = {
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
         <RecoilRoot>
-            <Inspect
-                disabled={
-                    process.env.NODE_ENV === 'staging' ||
-                    process.env.NODE_ENV === 'production'
-                }
-            >
+            <Inspect disabled={import.meta.env.MODE === 'production'}>
                 <ThemeProvider theme={defaulttheme}>
                     <App />
                 </ThemeProvider>

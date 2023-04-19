@@ -5,11 +5,11 @@ import {
     SwitchTransition,
     TransitionGroup,
 } from 'react-transition-group';
-import routes from './router';
-import Progress from './compontents/nprogress';
+import routes from '@/router';
+import Progress from '@/compontents/nprogress';
 import './App.less';
 import ScrollTop from '@/compontents/scrollTop';
-import ThemeCustomization from './themes';
+import ThemeCustomization from '@/themes';
 function App() {
     const [isLoading, setIsLoading] = useState(false);
     const location = useLocation();

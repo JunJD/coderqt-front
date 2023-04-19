@@ -5,7 +5,7 @@ import Contexify from '@/views/contexify';
 import Login from '@/auth/pages/LoginPage';
 import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
-// import config from './../config';
+// import config from '@/config';
 // 懒加载一级路由
 
 const MainLayout = lazy(() => import('@/layout/index'));

@@ -2,11 +2,11 @@
 import { Button, Stack, Typography } from '@mui/material';
 
 // project import
-import MainCard from './../.././../compontents/MainCard';
+import MainCard from '@/compontents/MainCard';
 
 // assets
-import AnimateButton from './../../../compontents/@extended/AnimateButton';
-import LottieComponent from './../../../compontents/lottie';
+import AnimateButton from '@/compontents/@extended/AnimateButton';
+import LottieComponent from '@/compontents/lottie';
 import JSONData from './../../../../public/97634-code.json';
 
 const NavCard = () => (

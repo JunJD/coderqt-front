@@ -15,11 +15,6 @@ import { useRecoilValue } from 'recoil';
 const MENU_ID = 'blahblah';
 
 function Contexify() {
-    // 这个函数是用来显示菜单的
-    // 它传入一个对象，对象里面有两个属性，一个是event，一个是props，event是鼠标事件，
-    // props是自定义的属性，id是菜单的id，onClick是点击菜单项的回调函数
-    // 它返回一个对象，对象里面有一个属性show，这个属性是一个函数，
-    // 这个函数传入一个对象，对象里面有两个属性，一个是event，一个是props，event是鼠标事件，props是自定义的属性
     // const theme = useTheme();
 
     const auth = useRecoilValue(authStore);
@@ -28,6 +23,7 @@ function Contexify() {
         id: MENU_ID,
     });
 
+    // 这个函数是用来处理右键点击的回调函数的,它传入一个对象，对象里面有一个属性，就是event，event是鼠标事件
     function handleContextMenu(event: TriggerEvent) {
         show({
             event,
