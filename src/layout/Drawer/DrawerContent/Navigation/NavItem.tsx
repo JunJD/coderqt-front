@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-    // Avatar,
-    // Chip,
+    Avatar,
+    Chip,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -150,7 +150,7 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
                     }
                 />
             )}
-            {/* {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
+            {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
                 <Chip
                     color={item.chip.color}
                     variant={item.chip.variant}
@@ -160,7 +160,7 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
                         item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>
                     }
                 />
-            )} */}
+            )}
         </ListItemButton>
     );
 };

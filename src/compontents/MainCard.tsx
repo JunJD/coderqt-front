@@ -37,7 +37,6 @@ interface MainCardProps {
     codeHighlight?: boolean;
 }
 
-// 自定义的MainCard组件，主要是为了实现代码高亮，其中的代码高亮部分暂时注释掉了
 const MainCard = (
     {
         border = true,
@@ -50,7 +49,7 @@ const MainCard = (
         secondary,
         sx = {},
         title,
-        codeHighlight,
+        // codeHighlight,
         ...others
     }: MainCardProps,
     ref: ForwardedRef<any>,
@@ -107,14 +106,14 @@ const MainCard = (
             {!content && children}
 
             {/* card footer - clipboard & highlighter  */}
-            {codeHighlight && (
+            {/* {codeHighlight && (
                 <>
                     <Divider sx={{ borderStyle: 'dashed' }} />
-                    {/* <Highlighter codeHighlight={codeHighlight} main> */}
+                    <Highlighter codeHighlight={codeHighlight} main>
                     {children}
-                    {/* </Highlighter> */}
+                    </Highlighter>
                 </>
-            )}
+            )} */}
         </Card>
     );
 };

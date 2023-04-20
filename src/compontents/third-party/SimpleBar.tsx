@@ -1,11 +1,8 @@
-import PropTypes from 'prop-types';
-
 // material-ui
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
-// third-party
-import SimpleBar from 'simplebar-react';
+// 监测设备类型
 import { BrowserView, MobileView } from 'react-device-detect';
 import { FC } from 'react';
 
@@ -13,30 +10,22 @@ import { FC } from 'react';
 const RootStyle = styled(BrowserView)({
     flexGrow: 1,
     height: '100%',
-    overflow: 'hidden',
+    overflow: 'auto',
+    // 重写滚动条样式
+    '&::-webkit-scrollbar': {
+        width: 8,
+        height: 8,
+        backgroundColor: 'transparent',
+    },
+    '&::-webkit-scrollbar-thumb': {
+        borderRadius: 4,
+        backgroundColor: 'rgba(0, 0, 0, 0.48)',
+    },
+    '&::-webkit-scrollbar-track': {
+        borderRadius: 4,
+        backgroundColor: 'transparent',
+    },
 });
-
-// scroll bar wrapper
-const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
-    maxHeight: '100%',
-    '& .simplebar-scrollbar': {
-        '&:before': {
-            backgroundColor: alpha(theme.palette.grey[500], 0.48),
-        },
-        '&.simplebar-visible:before': {
-            opacity: 1,
-        },
-    },
-    '& .simplebar-track.simplebar-vertical': {
-        width: 10,
-    },
-    '& .simplebar-track.simplebar-horizontal .simplebar-scrollbar': {
-        height: 6,
-    },
-    '& .simplebar-mask': {
-        zIndex: 'inherit',
-    },
-}));
 
 interface SimpleBarScrollProps {
     children: React.ReactNode;
@@ -50,16 +39,7 @@ const SimpleBarScroll: FC<SimpleBarScrollProps> = ({
 }) => {
     return (
         <>
-            <RootStyle>
-                <SimpleBarStyle
-                    timeout={500}
-                    clickOnTrack={false}
-                    sx={sx}
-                    {...other}
-                >
-                    {children}
-                </SimpleBarStyle>
-            </RootStyle>
+            <RootStyle>{children}</RootStyle>
             <MobileView>
                 <Box sx={{ overflowX: 'auto', ...sx }} {...other}>
                     {children}

@@ -5,8 +5,6 @@ import { Box, Typography } from '@mui/material';
 import NavGroup from './NavGroup';
 import menuItem from '@/menuItems';
 
-// ==============================|| DRAWER CONTENT - NAVIGATION ||============================== //
-
 const Navigation = () => {
     const navGroups = menuItem.items.map((item) => {
         switch (item.type) {
