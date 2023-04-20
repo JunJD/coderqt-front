@@ -1,13 +1,11 @@
-import PropTypes from 'prop-types';
-import { forwardRef, useEffect } from 'react';
+import { FC, forwardRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
-    Avatar,
-    Chip,
+    // Avatar,
+    // Chip,
     ListItemButton,
     ListItemIcon,
     ListItemText,
@@ -15,14 +13,18 @@ import {
 } from '@mui/material';
 
 // project import
-import { activeItem } from 'store/reducers/menu';
+import { useRecoilState } from 'recoil';
+import { menuStore } from '@/store/menu';
+import { NavGroupProps } from './NavGroup';
 
-// ==============================|| NAVIGATION - LIST ITEM ||============================== //
+interface NavItemProps {
+    item: NavGroupProps['item'];
+    level: number;
+}
 
-const NavItem = ({ item, level }) => {
+const NavItem: FC<NavItemProps> = ({ item, level }) => {
     const theme = useTheme();
-    const dispatch = useDispatch();
-    const menu = useSelector((state) => state.menu);
+    const [menu, setMenu] = useRecoilState(menuStore);
     const { drawerOpen, openItem } = menu;
 
     let itemTarget = '_self';
@@ -31,6 +33,7 @@ const NavItem = ({ item, level }) => {
     }
 
     let listItemProps = {
+        // eslint-disable-next-line react/display-name
         component: forwardRef((props, ref) => (
             <Link ref={ref} {...props} to={item.url} target={itemTarget} />
         )),
@@ -39,8 +42,8 @@ const NavItem = ({ item, level }) => {
         listItemProps = { component: 'a', href: item.url, target: itemTarget };
     }
 
-    const itemHandler = (id) => {
-        dispatch(activeItem({ openItem: [id] }));
+    const itemHandler = (id: string) => {
+        setMenu({ ...menu, openItem: [id] });
     };
 
     const Icon = item.icon;
@@ -59,7 +62,7 @@ const NavItem = ({ item, level }) => {
             .split('/')
             .findIndex((id) => id === item.id);
         if (currentIndex > -1) {
-            dispatch(activeItem({ openItem: [item.id] }));
+            setMenu({ ...menu, openItem: [item.id] });
         }
         // eslint-disable-next-line
     }, []);
@@ -147,7 +150,7 @@ const NavItem = ({ item, level }) => {
                     }
                 />
             )}
-            {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
+            {/* {(drawerOpen || (!drawerOpen && level !== 1)) && item.chip && (
                 <Chip
                     color={item.chip.color}
                     variant={item.chip.variant}
@@ -157,14 +160,9 @@ const NavItem = ({ item, level }) => {
                         item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>
                     }
                 />
-            )}
+            )} */}
         </ListItemButton>
     );
-};
-
-NavItem.propTypes = {
-    item: PropTypes.object,
-    level: PropTypes.number,
 };
 
 export default NavItem;

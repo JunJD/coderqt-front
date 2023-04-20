@@ -1,17 +1,40 @@
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-
 // material-ui
 import { Box, List, Typography } from '@mui/material';
 
 // project import
 import NavItem from './NavItem';
+import { FC, useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
+import { menuStore } from '@/store/menu';
 
-// ==============================|| NAVIGATION - LIST GROUP ||============================== //
+export interface NavGroupProps {
+    item: {
+        id: string;
+        title?: string;
+        type: string;
+        icon?: JSX.Element;
+        url?: string;
+        external?: boolean;
+        target?: boolean;
+        disabled?: boolean;
+        size?: string;
+        chip?: {
+            color: string;
+            label: string;
+            variant: any;
+        };
+        avatar?: {
+            src: string;
+            alt: string;
+        };
+        children?: NavGroupProps['item'][];
+    };
+}
 
-const NavGroup = ({ item }) => {
-    const menu = useSelector((state) => state.menu);
-    const { drawerOpen } = menu;
+const NavGroup: FC<NavGroupProps> = ({ item }) => {
+    // 全局维护菜单状态
+    const menu = useRecoilValue(menuStore);
+    const drawerOpen = useMemo(() => menu.drawerOpen, [menu.drawerOpen]);
 
     const navCollapse = item.children?.map((menuItem) => {
         switch (menuItem.type) {
@@ -60,10 +83,6 @@ const NavGroup = ({ item }) => {
             {navCollapse}
         </List>
     );
-};
-
-NavGroup.propTypes = {
-    item: PropTypes.object,
 };
 
 export default NavGroup;
