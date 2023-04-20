@@ -1,5 +1,5 @@
 import zmRequest from '@/service';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { authStore } from '@/store/auth';
@@ -7,10 +7,17 @@ import './index.less';
 
 export default function SignInPage() {
     const [auth, setAuth] = useRecoilState(authStore);
-
+    const noserver = useRef(import.meta.env.MODE === 'no-server');
     const navigator = useNavigate();
     const accessPermission = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (noserver.current) {
+            setAuth({
+                ...auth,
+                token: '123456',
+            });
+            return;
+        }
         const form = e.currentTarget;
         const formData = new FormData(form);
 
@@ -19,7 +26,7 @@ export default function SignInPage() {
         const res = await zmRequest.post({
             url: '/auth/login',
             data: {
-                phone: data.phone,
+                phoneNumber: data.phoneNumber,
                 password: data.password,
             },
         });
@@ -28,7 +35,7 @@ export default function SignInPage() {
                 ...auth,
                 token: res.result.accessToken,
                 userInfo: {
-                    phone: res.result.sub,
+                    phoneNumber: res.result.sub,
                     username: res.result.username,
                 },
             });
@@ -37,7 +44,7 @@ export default function SignInPage() {
 
     useEffect(() => {
         if (auth.token) {
-            navigator('/main');
+            navigator('/main/contexify');
         }
     }, [auth.token, navigator]);
 
@@ -48,7 +55,7 @@ export default function SignInPage() {
                 <p>
                     <label>手机号/邮箱</label>
                     <br />
-                    <input type="text" name="phone" required />
+                    <input type="text" name="phoneNumber" required />
                 </p>
                 <p>
                     <label>密码</label>
