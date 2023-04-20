@@ -2,16 +2,16 @@
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
-// 监测设备类型
+// 监测设备类型，电脑端和移动端的滚动条样式不同
 import { BrowserView, MobileView } from 'react-device-detect';
 import { FC } from 'react';
 
-// BrowserView: 电脑端
+// 电脑端组件，重写滚动条样式
+// styled(BrowserView)({})，BrowserView是一个组件，{ } 是一个对象，对象里面是css样式，返回一个组件
 const RootStyle = styled(BrowserView)({
     flexGrow: 1,
     height: '100%',
     overflow: 'auto',
-    // 重写滚动条样式,hover时显示
     '&::-webkit-scrollbar': {
         width: 0,
         height: 0,

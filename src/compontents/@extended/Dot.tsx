@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
+import { FC } from 'react';
 
-const Dot = ({ color, size }) => {
+interface DotProps {
+    color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
+    size?: number;
+}
+
+const Dot: FC<DotProps> = ({ color, size }) => {
     const theme = useTheme();
     let main;
     switch (color) {
@@ -38,11 +42,6 @@ const Dot = ({ color, size }) => {
             }}
         />
     );
-};
-
-Dot.propTypes = {
-    color: PropTypes.string,
-    size: PropTypes.number,
 };
 
 export default Dot;

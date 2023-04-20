@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
 
@@ -78,15 +76,6 @@ const AnalyticEcommerce = ({
         </Box>
     </MainCard>
 );
-
-AnalyticEcommerce.propTypes = {
-    color: PropTypes.string,
-    title: PropTypes.string,
-    count: PropTypes.string,
-    percentage: PropTypes.number,
-    isLoss: PropTypes.bool,
-    extra: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
-};
 
 AnalyticEcommerce.defaultProps = {
     color: 'primary',

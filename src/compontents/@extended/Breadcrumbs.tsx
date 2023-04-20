@@ -1,25 +1,35 @@
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
-import { Grid, Typography } from '@mui/material';
+import {
+    Grid,
+    ListItemSecondaryActionClassKey,
+    Typography,
+} from '@mui/material';
 
 // project imports
 import MainCard from '../MainCard';
 
-// ==============================|| BREADCRUMBS ||============================== //
+interface BreadcrumbsProps {
+    navigation: any;
+    title?: boolean;
+}
 
-const Breadcrumbs = ({ navigation, title, ...others }) => {
+const Breadcrumbs: FC<BreadcrumbsProps> = ({
+    navigation,
+    title,
+    ...others
+}) => {
     const location = useLocation();
     const [main, setMain] = useState();
     const [item, setItem] = useState();
 
     // set active item state
-    const getCollapse = (menu) => {
+    const getCollapse = (menu: any) => {
         if (menu.children) {
-            menu.children.filter((collapse) => {
+            menu.children.filter((collapse: any) => {
                 if (collapse.type && collapse.type === 'collapse') {
                     getCollapse(collapse);
                 } else if (collapse.type && collapse.type === 'item') {
@@ -34,7 +44,7 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     };
 
     useEffect(() => {
-        navigation?.items?.map((menu) => {
+        navigation?.items?.map((menu: { type: string }) => {
             if (menu.type && menu.type === 'group') {
                 getCollapse(menu);
             }
@@ -121,11 +131,6 @@ const Breadcrumbs = ({ navigation, title, ...others }) => {
     }
 
     return breadcrumbContent;
-};
-
-Breadcrumbs.propTypes = {
-    navigation: PropTypes.object,
-    title: PropTypes.bool,
 };
 
 export default Breadcrumbs;
