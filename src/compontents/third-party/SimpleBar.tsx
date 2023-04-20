@@ -6,22 +6,27 @@ import { Box } from '@mui/material';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { FC } from 'react';
 
-// root style
+// BrowserView: 电脑端
 const RootStyle = styled(BrowserView)({
     flexGrow: 1,
     height: '100%',
     overflow: 'auto',
-    // 重写滚动条样式
+    // 重写滚动条样式,hover时显示
     '&::-webkit-scrollbar': {
-        width: 8,
-        height: 8,
+        width: 0,
+        height: 0,
+    },
+    '&:hover::-webkit-scrollbar': {
+        width: 6,
+        height: 6,
         backgroundColor: 'transparent',
     },
-    '&::-webkit-scrollbar-thumb': {
+    '&:hover::-webkit-scrollbar-thumb': {
         borderRadius: 4,
-        backgroundColor: 'rgba(0, 0, 0, 0.48)',
+        // 浅色
+        backgroundColor: 'rgba(0, 0, 0, 0.24)',
     },
-    '&::-webkit-scrollbar-track': {
+    '&:hover::-webkit-scrollbar-track': {
         borderRadius: 4,
         backgroundColor: 'transparent',
     },
