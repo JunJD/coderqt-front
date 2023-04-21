@@ -10,7 +10,13 @@ import LottieComponent from '@/compontents/lottie';
 import JSONData from './../../../../public/97634-code.json';
 
 const NavCard = () => (
-    <MainCard sx={{ bgcolor: 'grey.50', m: 3 }}>
+    <MainCard
+        sx={{
+            bgcolor: 'grey.50',
+            m: 3,
+            opacity: 0.9,
+        }}
+    >
         <Stack alignItems="center" spacing={2.5}>
             <LottieComponent animationData={JSONData} width={112} />
             <Stack alignItems="center">

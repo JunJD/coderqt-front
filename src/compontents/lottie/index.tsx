@@ -8,6 +8,7 @@ interface ILottie {
     animationData: LottieOptions['animationData'];
     height?: number;
     width?: number;
+    style?: React.CSSProperties;
 }
 
 // Define the Lottie component
@@ -15,6 +16,7 @@ const LottieComponent: FC<ILottie> = ({
     animationData,
     height,
     width,
+    style,
     ...otherOptions
 }) => {
     const defaultOptions = {
@@ -35,6 +37,7 @@ const LottieComponent: FC<ILottie> = ({
                 display: 'flex',
                 width: `${width}px`,
                 height: `${height}px`,
+                ...style,
             }}
         >
             <Lottie {...defaultOptions} {...otherOptions} />

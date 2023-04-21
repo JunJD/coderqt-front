@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -37,16 +37,17 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
 
     let listItemProps = {
         // eslint-disable-next-line react/display-name
-        component: (props: CommonProps) => (
+        component: React.forwardRef((props: CommonProps, ref) => (
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            <Link {...props} to={item.url!} target={itemTarget} />
-        ),
+            <Link {...props} to={item.url!} ref={ref} />
+        )),
     };
     if (item?.external) {
         listItemProps = {
-            component: (props: CommonProps) => (
-                <a {...props} href={item.url} target={itemTarget} />
-            ),
+            // eslint-disable-next-line react/display-name
+            component: React.forwardRef((props: CommonProps, ref) => (
+                <a {...props} href={item.url} ref={ref} target={itemTarget} />
+            )),
         };
     }
 
@@ -55,11 +56,18 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
     };
 
     const Icon = item.icon;
-    const itemIcon = item.icon ? (
-        <Icon style={{ fontSize: drawerOpen ? '1rem' : '1.25rem' }} />
-    ) : (
-        false
-    );
+    const itemIcon = useMemo(() => {
+        if (item.icon) {
+            return (
+                <Icon
+                    style={{
+                        opacity: drawerOpen ? 1 : 0,
+                    }}
+                />
+            );
+        }
+        return null;
+    }, [item.icon, Icon, drawerOpen]);
 
     const isSelected = openItem.findIndex((id) => id === item.id) > -1;
 

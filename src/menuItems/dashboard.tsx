@@ -16,7 +16,7 @@ const dashboard: IMenuItem = {
             id: 'dashboard',
             title: 'Dashboard',
             type: 'item',
-            url: '/main/contexify',
+            url: '/main/pdfEditor',
             icon: icons.DashboardOutlined,
             breadcrumbs: false,
         },

@@ -1,15 +1,18 @@
 import type { RouteObject } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import Contexify from '@/views/contexify';
+import MainLayout from '@/layout/index';
 import Login from '@/auth/pages/LoginPage';
 import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
-import PdfEditor from '@/views/uploadResume/pdfEditor';
+import Loadable from '@/compontents/Loadable';
 // import config from '@/config';
 // 懒加载一级路由
 
-const MainLayout = lazy(() => import('@/layout/index'));
+const Contexify = Loadable(lazy(() => import('@/views/contexify')));
+const UploadResume = Loadable(
+    lazy(() => import('@/views/uploadResume/pdfEditor')),
+);
 
 const routes: RouteObject[] = [
     {
@@ -38,7 +41,7 @@ const routes: RouteObject[] = [
             },
             {
                 path: '/main/pdfEditor',
-                element: <PdfEditor />,
+                element: <UploadResume />,
             },
         ],
     },

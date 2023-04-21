@@ -9,6 +9,7 @@ const config = {
     mode: 'light',
     presetColor: 'default',
     themeDirection: 'ltr',
+    title: 'HELLO AI',
 };
 
 export default config;

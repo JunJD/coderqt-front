@@ -1,12 +1,14 @@
 // material-ui
-// import { useTheme } from '@mui/material/styles';
+// assets
+import Lottie from '@/compontents/lottie';
+import JSONData from '@/../public/137299-code-or-terminal.json';
 
 const Logo = () => {
     // const theme = useTheme();
 
     return (
         <>
-            <h3> 此处是LOGO</h3>
+            <Lottie animationData={JSONData} height={80} width={80} />
         </>
     );
 };
