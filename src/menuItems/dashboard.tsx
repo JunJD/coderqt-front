@@ -1,12 +1,13 @@
 // assets
 import { DashboardOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
     DashboardOutlined,
 };
 
-const dashboard = {
+const dashboard: IMenuItem = {
     id: 'group-dashboard',
     title: 'Navigation',
     type: 'group',

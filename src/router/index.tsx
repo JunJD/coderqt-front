@@ -5,6 +5,7 @@ import Contexify from '@/views/contexify';
 import Login from '@/auth/pages/LoginPage';
 import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
+import PdfEditor from '@/views/uploadResume/pdfEditor';
 // import config from '@/config';
 // 懒加载一级路由
 
@@ -34,6 +35,10 @@ const routes: RouteObject[] = [
             {
                 path: '/main/contexify',
                 element: <Contexify></Contexify>,
+            },
+            {
+                path: '/main/pdfEditor',
+                element: <PdfEditor />,
             },
         ],
     },

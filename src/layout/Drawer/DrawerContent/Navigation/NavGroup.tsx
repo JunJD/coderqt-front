@@ -6,32 +6,9 @@ import NavItem from './NavItem';
 import { FC, useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { menuStore } from '@/store/menu';
+import { MenuItem } from '@/menuItems';
 
-export interface NavGroupProps {
-    item: {
-        id: string;
-        title?: string;
-        type: string;
-        icon?: JSX.Element;
-        url?: string;
-        external?: boolean;
-        target?: boolean;
-        disabled?: boolean;
-        size?: string;
-        chip?: {
-            color: string;
-            label: string;
-            variant: any;
-        };
-        avatar?: {
-            src: string;
-            alt: string;
-        };
-        children?: NavGroupProps['item'][];
-    };
-}
-
-const NavGroup: FC<NavGroupProps> = ({ item }) => {
+const NavGroup: FC<{ item: MenuItem }> = ({ item }) => {
     // 全局维护菜单状态
     const menu = useRecoilValue(menuStore);
     const drawerOpen = useMemo(() => menu.drawerOpen, [menu.drawerOpen]);

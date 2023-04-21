@@ -1,5 +1,6 @@
 // assets
 import { ChromeOutlined, QuestionOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
@@ -7,7 +8,7 @@ const icons = {
     QuestionOutlined,
 };
 
-const support = {
+const support: IMenuItem = {
     id: 'support',
     title: 'Support',
     type: 'group',

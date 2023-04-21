@@ -7,6 +7,7 @@ import {
     FontSizeOutlined,
     LoadingOutlined,
 } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
@@ -18,7 +19,7 @@ const icons = {
     AppstoreAddOutlined,
 };
 
-const utilities = {
+const utilities: IMenuItem = {
     id: 'utilities',
     title: 'Utilities',
     type: 'group',

@@ -8,8 +8,8 @@ import { Box, Toolbar, useMediaQuery } from '@mui/material';
 // project import
 import Drawer from './Drawer';
 import Header from './Header';
-// import navigation from 'menu-items';
-// import Breadcrumbs from 'components/@extended/Breadcrumbs';
+import navigation from '@/menuItems';
+import Breadcrumbs from '@/compontents/@extended/Breadcrumbs';
 
 import { menuStore } from '@/store/menu';
 import { useRecoilState } from 'recoil';
@@ -46,7 +46,10 @@ const MainLayout = () => {
             >
                 {/* toolbar是mui的组件，作用是占据一定的高度，使得内容不会被遮挡 */}
                 <Toolbar />
-                {/* <Breadcrumbs navigation={navigation} title titleBottom card={false} divider={false} /> */}
+                <Breadcrumbs
+                    navigation={navigation}
+                    title /*titleBottom card={false} divider={false}*/
+                />
                 <Outlet></Outlet>
             </Box>
         </Box>

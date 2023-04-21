@@ -6,6 +6,7 @@ import {
     Card,
     CardContent,
     CardHeader,
+    CardProps,
     Divider,
     Typography,
 } from '@mui/material';
@@ -19,9 +20,7 @@ const headerSX = {
     '& .MuiCardHeader-action': { m: '0px auto', alignSelf: 'center' },
 };
 
-// ==============================|| CUSTOM - MAIN CARD ||============================== //
-
-interface MainCardProps {
+export interface MainCardProps extends Omit<CardProps, 'content'> {
     border?: boolean;
     boxShadow?: boolean;
     children?: React.ReactNode;

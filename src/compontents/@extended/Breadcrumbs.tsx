@@ -3,17 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
-import {
-    Grid,
-    ListItemSecondaryActionClassKey,
-    Typography,
-} from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 // project imports
-import MainCard from '../MainCard';
+import MainCard, { MainCardProps } from '../MainCard';
+import { IMenuItem, IMenuItems } from '@/menuItems';
 
-interface BreadcrumbsProps {
-    navigation: any;
+interface BreadcrumbsProps extends Omit<MainCardProps, 'title'> {
+    navigation: IMenuItems;
     title?: boolean;
 }
 
@@ -23,13 +20,12 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
     ...others
 }) => {
     const location = useLocation();
-    const [main, setMain] = useState();
-    const [item, setItem] = useState();
+    const [main, setMain] = useState<IMenuItem>();
+    const [item, setItem] = useState<IMenuItem>();
 
-    // set active item state
-    const getCollapse = (menu: any) => {
+    const getCollapse = (menu: IMenuItem) => {
         if (menu.children) {
-            menu.children.filter((collapse: any) => {
+            menu.children.filter((collapse: IMenuItem) => {
                 if (collapse.type && collapse.type === 'collapse') {
                     getCollapse(collapse);
                 } else if (collapse.type && collapse.type === 'item') {
@@ -44,7 +40,7 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({
     };
 
     useEffect(() => {
-        navigation?.items?.map((menu: { type: string }) => {
+        navigation?.items?.map((menu) => {
             if (menu.type && menu.type === 'group') {
                 getCollapse(menu);
             }

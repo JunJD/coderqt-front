@@ -1,5 +1,6 @@
 // assets
 import { LoginOutlined, ProfileOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
@@ -7,7 +8,7 @@ const icons = {
     ProfileOutlined,
 };
 
-const pages = {
+const pages: IMenuItem = {
     id: 'authentication',
     title: 'Authentication',
     type: 'group',
