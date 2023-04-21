@@ -13,20 +13,18 @@ const RootStyle = styled(BrowserView)({
     height: '100%',
     overflow: 'auto',
     '&::-webkit-scrollbar': {
-        width: 0,
-        height: 0,
-    },
-    '&:hover::-webkit-scrollbar': {
         width: 6,
         height: 6,
         backgroundColor: 'transparent',
+        '-webkit-transition': 'all .5s ease-in-out',
+        transition: 'all .5s ease-in-out',
     },
     '&:hover::-webkit-scrollbar-thumb': {
         borderRadius: 4,
         // 浅色
         backgroundColor: 'rgba(0, 0, 0, 0.24)',
     },
-    '&:hover::-webkit-scrollbar-track': {
+    '&::-webkit-scrollbar-track': {
         borderRadius: 4,
         backgroundColor: 'transparent',
     },

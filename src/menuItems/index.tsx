@@ -3,7 +3,7 @@ import pages from './pages';
 import dashboard from './dashboard';
 import utilities from './utilities';
 import support from './support';
-
+import { ChipTypeMap } from '@mui/material/Chip';
 export interface IMenuItem {
     // 唯一标识
     id: string;
@@ -23,6 +23,10 @@ export interface IMenuItem {
     target?: boolean;
     // 是否是外部链接
     external?: boolean;
+    // 是否禁用
+    disabled?: boolean;
+    // 是否显示在抽屉
+    chip?: ChipTypeMap['props'];
 }
 export interface IMenuItems {
     items: IMenuItem[];

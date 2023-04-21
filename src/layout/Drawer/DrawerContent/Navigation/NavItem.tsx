@@ -1,4 +1,4 @@
-import { FC, forwardRef, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -15,10 +15,13 @@ import {
 // project import
 import { useRecoilState } from 'recoil';
 import { menuStore } from '@/store/menu';
-import { NavGroupProps } from './NavGroup';
+import { IMenuItem } from '@/menuItems';
+import { CommonProps } from '@mui/material/OverridableComponent';
 
 interface NavItemProps {
-    item: NavGroupProps['item'];
+    // 注释：这里的 item 是一个 IMenuItem 类型的对象
+    item: IMenuItem;
+    // 注释：用于判断是否是一级菜单
     level: number;
 }
 
@@ -34,12 +37,17 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
 
     let listItemProps = {
         // eslint-disable-next-line react/display-name
-        component: forwardRef((props, ref) => (
-            <Link ref={ref} {...props} to={item.url} target={itemTarget} />
-        )),
+        component: (props: CommonProps) => (
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            <Link {...props} to={item.url!} target={itemTarget} />
+        ),
     };
     if (item?.external) {
-        listItemProps = { component: 'a', href: item.url, target: itemTarget };
+        listItemProps = {
+            component: (props: CommonProps) => (
+                <a {...props} href={item.url} target={itemTarget} />
+            ),
+        };
     }
 
     const itemHandler = (id: string) => {
@@ -78,8 +86,8 @@ const NavItem: FC<NavItemProps> = ({ item, level }) => {
             selected={isSelected}
             sx={{
                 zIndex: 1201,
-                pl: drawerOpen ? `${level * 28}px` : 1.5,
-                py: !drawerOpen && level === 1 ? 1.25 : 1,
+                // pl: drawerOpen ? `${28}px` : 1.5,
+                // py: !drawerOpen && level === 1 ? 1.25 : 1,
                 ...(drawerOpen && {
                     '&:hover': {
                         bgcolor: 'primary.lighter',

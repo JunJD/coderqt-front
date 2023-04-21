@@ -37,7 +37,6 @@ const MainLayout = () => {
         <Box sx={{ display: 'flex', width: '100%' }}>
             <Header open={open} handleDrawerToggle={handleDrawerToggle} />
             <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
-            {/* component="main" 使得main标签的样式生效, main是mui的组件 */}
             <Box
                 component="main"
                 // flexGrow: 1是指flex-grow: 1, 作用是让元素占据剩余空间
