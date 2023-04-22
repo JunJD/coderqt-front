@@ -53,9 +53,6 @@ const MobileSection = () => {
                     component="span"
                     // 这是一个material-ui的属性，作用是去除点击时的水波纹效果
                     disableRipple
-                    sx={{
-                        bgcolor: open ? 'grey.300' : 'grey.100',
-                    }}
                     ref={anchorRef}
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"

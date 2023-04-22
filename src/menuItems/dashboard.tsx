@@ -1,10 +1,10 @@
 // assets
-import { DashboardOutlined } from '@ant-design/icons';
+import { LaptopOutlined } from '@ant-design/icons';
 import { IMenuItem } from '.';
 
 // icons
 const icons = {
-    DashboardOutlined,
+    LaptopOutlined,
 };
 
 const dashboard: IMenuItem = {
@@ -13,11 +13,11 @@ const dashboard: IMenuItem = {
     type: 'group',
     children: [
         {
-            id: 'dashboard',
-            title: 'Dashboard',
+            id: '/main/aiFaq',
+            title: 'AIFAQ',
             type: 'item',
-            url: '/main/pdfEditor',
-            icon: icons.DashboardOutlined,
+            url: '/main/aiFaq',
+            icon: icons.LaptopOutlined,
             breadcrumbs: false,
         },
     ],

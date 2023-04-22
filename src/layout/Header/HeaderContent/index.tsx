@@ -45,8 +45,7 @@ const HeaderContent = () => {
                 // 这是一个material-ui的属性，值为secondary时，背景色为主题色，字体颜色为白色
                 color="primary"
                 title={light ? '关灯' : '开灯'}
-                sx={{ color: 'text.primary', bgcolor: 'grey.100' }}
-                onClick={() => setMainState({ light: !light })}
+                onClick={() => setMainState({ ...mainState, light: !light })}
             >
                 <BulbOutlined />
             </IconButton>

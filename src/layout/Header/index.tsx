@@ -25,9 +25,6 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerToggle }) => {
     const theme = useTheme();
     const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
 
-    const iconBackColor = 'grey.100';
-    const iconBackColorOpen = 'grey.200';
-
     // common header
     const mainHeader = (
         <Toolbar>
@@ -39,9 +36,6 @@ const Header: FC<HeaderProps> = ({ open, handleDrawerToggle }) => {
                 edge="start"
                 // sx是指样式
                 sx={{
-                    color: 'text.primary',
-                    bgcolor: open ? iconBackColorOpen : iconBackColor,
-                    // ml: { xs: 0, lg: -2 }是指margin-left: 0, lg是指大于lg的屏幕
                     ml: { xs: 0, lg: -2 },
                 }}
             >

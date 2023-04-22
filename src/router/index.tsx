@@ -13,6 +13,7 @@ const Contexify = Loadable(lazy(() => import('@/views/contexify')));
 const UploadResume = Loadable(
     lazy(() => import('@/views/uploadResume/pdfEditor')),
 );
+const AiFaq = Loadable(lazy(() => import('@/views/aiFaq')));
 
 const routes: RouteObject[] = [
     {
@@ -42,6 +43,10 @@ const routes: RouteObject[] = [
             {
                 path: '/main/pdfEditor',
                 element: <UploadResume />,
+            },
+            {
+                path: '/main/aiFaq',
+                element: <AiFaq />,
             },
         ],
     },
