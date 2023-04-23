@@ -21,7 +21,7 @@ const icons = {
 
 const utilities: IMenuItem = {
     id: 'utilities',
-    title: 'Utilities',
+    title: '实用工具',
     type: 'group',
     children: [
         {

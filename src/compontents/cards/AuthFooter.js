@@ -70,7 +70,7 @@ const AuthFooter = () => {
                         target="_blank"
                         underline="hover"
                     >
-                        Support
+                        测试页面
                     </Typography>
                 </Stack>
             </Stack>

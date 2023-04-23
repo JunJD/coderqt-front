@@ -10,11 +10,11 @@ const icons = {
 
 const pages: IMenuItem = {
     id: 'authentication',
-    title: 'Authentication',
+    title: '身份验证',
     type: 'group',
     children: [
         {
-            id: 'login1',
+            id: 'login',
             title: 'Login',
             type: 'item',
             url: '/login',
@@ -22,7 +22,7 @@ const pages: IMenuItem = {
             target: true,
         },
         {
-            id: 'register1',
+            id: 'register',
             title: 'Register',
             type: 'item',
             url: '/register',

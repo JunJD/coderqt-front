@@ -9,7 +9,7 @@ const icons = {
 
 const dashboard: IMenuItem = {
     id: 'group-dashboard',
-    title: 'Navigation',
+    title: '导航',
     type: 'group',
     children: [
         {

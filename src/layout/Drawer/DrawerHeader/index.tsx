@@ -5,7 +5,7 @@ import { Stack, Chip } from '@mui/material';
 // project import
 import DrawerHeaderStyled from './DrawerHeaderStyled';
 import { FC } from 'react';
-import Logo from './../../../compontents/Logo';
+import Logo from '@/compontents/Logo';
 
 interface DrawerHeaderProps {
     open: boolean;

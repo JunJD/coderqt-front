@@ -10,7 +10,7 @@ const icons = {
 
 const support: IMenuItem = {
     id: 'support',
-    title: 'Support',
+    title: '测试页面',
     type: 'group',
     children: [
         {
