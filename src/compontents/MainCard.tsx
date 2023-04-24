@@ -62,7 +62,6 @@ const MainCard = (
             {...others}
             sx={{
                 ...sx,
-                boxShadow: theme.shadows[1],
                 borderRadius: 2,
                 '& pre': {
                     m: 0,

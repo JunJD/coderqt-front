@@ -5,10 +5,10 @@ import MainLayout from '@/layout/index';
 import Login from '@/auth/pages/LoginPage';
 import LandingPage from '@/auth/pages/LandingPage';
 import Register from '@/auth/pages/RegisterPage';
+import Dashboard from '@/views/dashboard';
 import Loadable from '@/compontents/Loadable';
 // import config from '@/config';
 // 懒加载一级路由
-
 const Contexify = Loadable(lazy(() => import('@/views/contexify')));
 const UploadResume = Loadable(
     lazy(() => import('@/views/uploadResume/pdfEditor')),
@@ -36,6 +36,10 @@ const routes: RouteObject[] = [
         path: '/main',
         element: <MainLayout></MainLayout>,
         children: [
+            {
+                path: '/main/dashboard',
+                element: <Dashboard></Dashboard>,
+            },
             {
                 path: '/main/contexify',
                 element: <Contexify></Contexify>,

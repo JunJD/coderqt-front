@@ -15,7 +15,7 @@ const pages: IMenuItem = {
     children: [
         {
             id: 'login',
-            title: 'Login',
+            title: '登录页面',
             type: 'item',
             url: '/login',
             icon: icons.LoginOutlined,
@@ -23,7 +23,7 @@ const pages: IMenuItem = {
         },
         {
             id: 'register',
-            title: 'Register',
+            title: '注册页面',
             type: 'item',
             url: '/register',
             icon: icons.ProfileOutlined,

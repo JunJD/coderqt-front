@@ -3,7 +3,7 @@ import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { FC } from 'react';
 
-interface DotProps {
+export interface DotProps {
     color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
     size?: number;
 }

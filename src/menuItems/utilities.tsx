@@ -26,32 +26,17 @@ const utilities: IMenuItem = {
     children: [
         {
             id: 'util-typography',
-            title: 'Typography',
+            title: 'TODO与AI',
             type: 'item',
             url: '/main/contexify',
             icon: icons.FontSizeOutlined,
         },
         {
             id: 'util-color',
-            title: 'Color',
+            title: '卡路里与AI',
             type: 'item',
             url: '/main/contexify',
             icon: icons.BgColorsOutlined,
-        },
-        {
-            id: 'util-shadow',
-            title: 'Shadow',
-            type: 'item',
-            url: '/main/contexify',
-            icon: icons.BarcodeOutlined,
-        },
-        {
-            id: 'ant-icons',
-            title: 'Ant Icons',
-            type: 'item',
-            url: '/main/contexify',
-            icon: icons.AntDesignOutlined,
-            breadcrumbs: false,
         },
     ],
 };

@@ -6,6 +6,7 @@ import {
     InputAdornment,
     OutlinedInput,
     Typography,
+    useTheme,
 } from '@mui/material';
 import React from 'react';
 
@@ -16,8 +17,13 @@ import React from 'react';
 // }));
 
 const AiFaq = () => {
+    const theme = useTheme();
     return (
-        <MainCard>
+        <MainCard
+            sx={{
+                boxShadow: theme.shadows[1],
+            }}
+        >
             {/* 文本 */}
             <Typography
                 variant="h4"

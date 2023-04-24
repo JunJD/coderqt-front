@@ -13,12 +13,19 @@ const dashboard: IMenuItem = {
     type: 'group',
     children: [
         {
+            id: '/main/dashboard',
+            title: 'dashboard',
+            type: 'item',
+            url: '/main/dashboard',
+            icon: icons.LaptopOutlined,
+            breadcrumbs: false,
+        },
+        {
             id: '/main/aiFaq',
             title: 'AIFAQ',
             type: 'item',
             url: '/main/aiFaq',
             icon: icons.LaptopOutlined,
-            breadcrumbs: false,
         },
     ],
 };
