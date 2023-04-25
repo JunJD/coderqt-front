@@ -14,7 +14,7 @@ const dashboard: IMenuItem = {
     children: [
         {
             id: '/main/dashboard',
-            title: 'dashboard',
+            title: '首页',
             type: 'item',
             url: '/main/dashboard',
             icon: icons.LaptopOutlined,
