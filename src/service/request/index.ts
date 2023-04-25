@@ -1,11 +1,8 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import type { ZMRequestConfig } from './type';
-import { notification } from 'antd';
-// 拦截器: 蒙版Loading/token/修改配置
+import type { AxiosResponseData, ZMRequestConfig } from './type';
 
 /**
- * 两个难点:
  *  1.拦截器进行精细控制
  *    > 全局拦截器
  *    > 实例拦截器
@@ -28,7 +25,7 @@ class ZMRequest {
                 return config;
             },
             (err) => {
-                throw err;
+                throw new Error(err.message ?? '请求失败');
             },
         );
         this.instance.interceptors.response.use(
@@ -36,18 +33,8 @@ class ZMRequest {
                 return res.data;
             },
             (err) => {
-                throw err;
+                throw new Error(err.message ?? '请求失败');
             },
-        );
-
-        // 针对特定的hyRequest实例添加拦截器
-        this.instance.interceptors.request.use(
-            config.interceptors?.requestSuccessFn as any,
-            config.interceptors?.requestFailureFn,
-        );
-        this.instance.interceptors.response.use(
-            config.interceptors?.responseSuccessFn,
-            config.interceptors?.responseFailureFn,
         );
     }
 
@@ -60,7 +47,7 @@ class ZMRequest {
         }
 
         // 返回Promise
-        return new Promise<T>((resolve, reject) => {
+        return new Promise<T>((resolve) => {
             this.instance
                 .request<any, T>(config)
                 .then((res) => {
@@ -71,26 +58,22 @@ class ZMRequest {
                     resolve(res);
                 })
                 .catch((err) => {
-                    notification.error({
-                        message: '请求失败',
-                        description: err.message,
-                    });
-                    reject(err);
+                    throw new Error(err.message ?? '请求失败');
                 });
         });
     }
 
-    get<T = any>(config: ZMRequestConfig<T>) {
-        return this.request({ ...config, method: 'GET' });
+    get<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
+        return this.request<AxiosResponseData<T>>({ ...config, method: 'GET' });
     }
-    post<T = any>(config: ZMRequestConfig<T>) {
-        return this.request({ ...config, method: 'POST' });
+    post<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
+        return this.request<AxiosResponseData<T>>({ ...config, method: 'POST' });
     }
-    delete<T = any>(config: ZMRequestConfig<T>) {
-        return this.request({ ...config, method: 'DELETE' });
+    delete<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
+        return this.request<AxiosResponseData<T>>({ ...config, method: 'DELETE' });
     }
-    patch<T = any>(config: ZMRequestConfig<T>) {
-        return this.request({ ...config, method: 'PATCH' });
+    patch<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
+        return this.request<AxiosResponseData<T>>({ ...config, method: 'PATCH' });
     }
 }
 

@@ -296,7 +296,7 @@ export default function OrderTable() {
                                                 value={row.protein}
                                                 displayType="text"
                                                 thousandSeparator
-                                                prefix="$"
+                                                prefix="￥"
                                             />
                                         </TableCell>
                                     </TableRow>

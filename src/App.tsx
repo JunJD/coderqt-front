@@ -8,17 +8,35 @@ import { useEffect } from 'react';
 function App() {
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
-        // 监听onerror事件，这个是全局捕获js异常
-        // window.addEventListener('error', (e) => {
-        //     console.log('error', e);
-        //     enqueueSnackbar('error', { variant: 'error' });
-        // });
-        // 监听onunhandledrejection事件，这个是全局捕获promise异常
-        window.addEventListener('unhandledrejection',async (e) => {
-            console.log('unhandledrejection', e.timeStamp);
-            enqueueSnackbar('1'
-                , { variant: 'error' });
+        window.addEventListener('unhandledrejection', async (e) => {
+            
+            enqueueSnackbar({
+                message: e.reason.message,
+                variant: 'error',
+                // 控制弹窗的位置
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'right',
+                },
+                // 控制弹窗的动画
+                transitionDuration: {
+                    enter: 300,
+                    exit: 1000,
+                },
+                // 控制弹窗的样式
+                // style: {
+                //     backgroundColor: 'red',
+                //     color: 'white',
+                // },
+                // 控制弹窗自动关闭的时间
+                autoHideDuration: 1000,
+            });
         });
+        return () => {
+            window.removeEventListener('unhandledrejection', () => {
+                console.log('移除了');
+            });
+        }
     }, [enqueueSnackbar]);
 
     return (
