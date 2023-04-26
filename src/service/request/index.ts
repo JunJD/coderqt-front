@@ -13,11 +13,11 @@ import type { AxiosResponseData, ZMRequestConfig } from './type';
 
 class ZMRequest {
     instance: AxiosInstance;
-
+    defaultParams: any = {};
     // request实例 => axios的实例
-    constructor(config: ZMRequestConfig) {
+    constructor(config: ZMRequestConfig, defaultParams?: any) {
         this.instance = axios.create(config);
-
+        this.defaultParams = defaultParams;
         // 每个instance实例都添加拦截器
         this.instance.interceptors.request.use(
             (config) => {
@@ -45,11 +45,10 @@ class ZMRequest {
         if (config.interceptors?.requestSuccessFn) {
             config = config.interceptors.requestSuccessFn(config);
         }
-
         // 返回Promise
         return new Promise<T>((resolve) => {
             this.instance
-                .request<any, T>(config)
+                .request<any, T>({...config, data: {...this.defaultParams, ...config.data}})
                 .then((res) => {
                     // 单词响应的成功拦截处理
                     if (config.interceptors?.responseSuccessFn) {

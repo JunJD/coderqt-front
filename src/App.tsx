@@ -5,11 +5,12 @@ import ScrollTop from '@/compontents/scrollTop';
 import ThemeCustomization from '@/themes';
 import { useSnackbar } from 'notistack';
 import { useEffect } from 'react';
+import { SpeedDial, SpeedDialAction } from '@mui/material';
+import { CodeOutlined, PlusOutlined } from '@ant-design/icons';
 function App() {
     const { enqueueSnackbar } = useSnackbar();
     useEffect(() => {
         window.addEventListener('unhandledrejection', async (e) => {
-            
             enqueueSnackbar({
                 message: e.reason.message,
                 variant: 'error',
@@ -29,21 +30,35 @@ function App() {
                 //     color: 'white',
                 // },
                 // 控制弹窗自动关闭的时间
-                autoHideDuration: 1000,
+                autoHideDuration: 2000,
             });
         });
         return () => {
             window.removeEventListener('unhandledrejection', () => {
                 console.log('移除了');
             });
-        }
+        };
     }, [enqueueSnackbar]);
+    const actions = [{ icon: <CodeOutlined />, name: 'Copy' }];
 
     return (
         <>
             <div className="App">
                 <ThemeCustomization>
                     <ScrollTop>{useRoutes(routes)}</ScrollTop>
+                    <SpeedDial
+                        ariaLabel="SpeedDial basic example"
+                        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+                        icon={<PlusOutlined />}
+                    >
+                        {actions.map((action) => (
+                            <SpeedDialAction
+                                key={action.name}
+                                icon={action.icon}
+                                tooltipTitle={action.name}
+                            />
+                        ))}
+                    </SpeedDial>
                 </ThemeCustomization>
             </div>
         </>

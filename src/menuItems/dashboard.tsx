@@ -21,8 +21,8 @@ const dashboard: IMenuItem = {
             breadcrumbs: false,
         },
         {
-            id: '/main/aiFaq',
-            title: 'AIFAQ',
+            id: '/main/aiaq',
+            title: 'AIAQ',
             type: 'item',
             url: '/main/aiFaq',
             icon: icons.LaptopOutlined,

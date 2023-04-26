@@ -1,4 +1,4 @@
-import zmRequest from '@/service';
+import { zmRequest } from '@/service';
 import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
