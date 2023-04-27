@@ -13,6 +13,21 @@ dependencies:
   '@emotion/styled':
     specifier: ^11.10.6
     version: 11.10.6(@emotion/react@11.10.6)(@types/react@18.0.38)(react@18.2.0)
+  '@fullcalendar/core':
+    specifier: ^6.1.6
+    version: 6.1.6
+  '@fullcalendar/daygrid':
+    specifier: ^6.1.6
+    version: 6.1.6(@fullcalendar/core@6.1.6)
+  '@fullcalendar/interaction':
+    specifier: ^6.1.6
+    version: 6.1.6(@fullcalendar/core@6.1.6)
+  '@fullcalendar/react':
+    specifier: ^6.1.6
+    version: 6.1.6(@fullcalendar/core@6.1.6)(react-dom@18.2.0)(react@18.2.0)
+  '@fullcalendar/timegrid':
+    specifier: ^6.1.6
+    version: 6.1.6(@fullcalendar/core@6.1.6)
   '@material-ui/core':
     specifier: ^4.12.4
     version: 4.12.4(@types/react@18.0.38)(react-dom@18.2.0)(react@18.2.0)
@@ -1003,6 +1018,49 @@ packages:
   /@eslint/js@8.35.0:
     resolution: {integrity: sha512-JXdzbRiWclLVoD8sNUjR443VVlYqiYmDVT6rGUEIEHU5YJW0gaVZwV2xgM7D4arkvASqD0IlLUVjHiFuxaftRw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /@fullcalendar/core@6.1.6:
+    resolution: {integrity: sha512-Q/3pWgOv7qr/eVpuDz+05jxJZSg7Fdwh4XgQP8DlJFLp5aLlOiiKdkTUIO1BX7clQtYTm8P0v7FqMKbsFiQInw==}
+    dependencies:
+      preact: 10.12.1
+    dev: false
+
+  /@fullcalendar/daygrid@6.1.6(@fullcalendar/core@6.1.6):
+    resolution: {integrity: sha512-HKxprePWXRyg1Shn7p0CWgggFZVwvs+Pg0Z9uSvx6a58wP1yTbOoJHhSVv5CDsfjnq1a0y6DsJbPP/V2LDl6bg==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.6
+    dependencies:
+      '@fullcalendar/core': 6.1.6
+    dev: false
+
+  /@fullcalendar/interaction@6.1.6(@fullcalendar/core@6.1.6):
+    resolution: {integrity: sha512-6TjKbDHOkF3C9hIzIhxiTX5FCmNcaCeRk5CeKXHZiIi1Y8gQwIkUkwcZps5uj7PIvb3wNVw8FbF+RNRoloPUqQ==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.6
+    dependencies:
+      '@fullcalendar/core': 6.1.6
+    dev: false
+
+  /@fullcalendar/react@6.1.6(@fullcalendar/core@6.1.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Ib1jl+4SwlyzM5JsVkhBEoB45hL11sQaN9O600XAa39lK2vSL4d0+ZTBSsBBdmezcHd/iECFk64jS0e3agGPVg==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.6
+      react: ^16.7.0 || ^17 || ^18
+      react-dom: ^16.7.0 || ^17 || ^18
+    dependencies:
+      '@fullcalendar/core': 6.1.6
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@fullcalendar/timegrid@6.1.6(@fullcalendar/core@6.1.6):
+    resolution: {integrity: sha512-WqiGGmzNJeeIt4QjXuBlYTGHp4B+OUb7pYwREt1fer+9keNyG7dd48367pBdia8USk9B3Ep2oHC0aGypJGUFdA==}
+    peerDependencies:
+      '@fullcalendar/core': ~6.1.6
+    dependencies:
+      '@fullcalendar/core': 6.1.6
+      '@fullcalendar/daygrid': 6.1.6(@fullcalendar/core@6.1.6)
+    dev: false
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -4504,6 +4562,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /preact@10.12.1:
+    resolution: {integrity: sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==}
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}

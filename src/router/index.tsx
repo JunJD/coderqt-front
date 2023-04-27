@@ -14,6 +14,7 @@ const UploadResume = Loadable(
     lazy(() => import('@/views/uploadResume/pdfEditor')),
 );
 const AiFaq = Loadable(lazy(() => import('@/views/aiFaq')));
+const Scheduler = Loadable(lazy(() => import('@/views/scheduler')));
 
 const routes: RouteObject[] = [
     {
@@ -51,6 +52,10 @@ const routes: RouteObject[] = [
             {
                 path: '/main/aiFaq',
                 element: <AiFaq />,
+            },
+            {
+                path: '/main/scheduler',
+                element: <Scheduler />,
             },
         ],
     },

@@ -27,6 +27,13 @@ const dashboard: IMenuItem = {
             url: '/main/aiFaq',
             icon: icons.LaptopOutlined,
         },
+        {
+            id: '/main/scheduler',
+            title: 'scheduler',
+            type: 'item',
+            url: '/main/scheduler',
+            icon: icons.LaptopOutlined,
+        },
     ],
 };
 
