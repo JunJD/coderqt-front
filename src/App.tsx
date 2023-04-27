@@ -39,7 +39,7 @@ function App() {
             });
         };
     }, [enqueueSnackbar]);
-    const actions = [{ icon: <CodeOutlined />, name: 'Copy' }];
+    const actions = [{ icon: <CodeOutlined />, name: '设置你的openAI_KEY' }];
 
     return (
         <>
@@ -48,7 +48,7 @@ function App() {
                     <ScrollTop>{useRoutes(routes)}</ScrollTop>
                     <SpeedDial
                         ariaLabel="SpeedDial basic example"
-                        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+                        sx={{ position: 'fixed', bottom: 16, right: 16 }}
                         icon={<PlusOutlined />}
                     >
                         {actions.map((action) => (
@@ -56,6 +56,9 @@ function App() {
                                 key={action.name}
                                 icon={action.icon}
                                 tooltipTitle={action.name}
+                                onClick={() => {
+                                    console.log('点击了');
+                                }}
                             />
                         ))}
                     </SpeedDial>

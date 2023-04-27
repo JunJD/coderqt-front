@@ -56,6 +56,7 @@
         "react-router-dom": "^6.8.2",
         "react-transition-group": "^4.4.5",
         "recoil": "^0.7.7",
+        "recoil-persist": "^4.2.0",
         "styled-components": "^5.3.8"
     },
     "devDependencies": {

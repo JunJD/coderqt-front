@@ -1,50 +1,33 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
     List,
     ListItemButton,
     ListItemIcon,
     ListItemText,
 } from '@mui/material';
-import { BuildFilled, MediumOutlined, PlayCircleOutlined, RobotFilled, SecurityScanFilled } from '@ant-design/icons';
+import OptionsItem, { OptionsItemType } from './config/optionsItem';
 
-const AiSelect = () => {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+interface AiSelectProps {
+    selectedItem: OptionsItemType;
+    onChange: (OptionsItem: OptionsItemType) => void;
+}
+
+const AiSelect: FC<AiSelectProps> = (props) => {
+    const { selectedItem, onChange } = props;
+
 
     const handleListItemClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-        index: number,
+        OptionsItem: OptionsItemType,
     ) => {
-        setSelectedIndex(index);
+        onChange(OptionsItem);
     };
-    
-    const OptionsItem = [
-        {
-            icon: <PlayCircleOutlined />,
-            text: '休闲聊天',
-        },
-        {
-            icon: <BuildFilled />,
-            text: '代码助理',
-        },
-        {
-            icon: <MediumOutlined />,
-            text: '编辑助理',
-        },
-        {
-            icon: <RobotFilled />,
-            text: '提示优化器',
-        },
-        {
-            icon: <SecurityScanFilled />,
-            text: '翻译助理',
-        },
-    ]
     
     return (
         <List component="nav" aria-label="secondary mailbox folder">
-            {OptionsItem.map((item, index) => (
+            {OptionsItem.map(item => (
                 <ListItemButton
-                    key={item.text + index}
+                    key={item.key}
                     sx={{
                         borderRadius: '10px',
                         color: 'secondary.main',
@@ -57,8 +40,8 @@ const AiSelect = () => {
                             color: 'white',
                         },
                     }}
-                    selected={selectedIndex === index}
-                    onClick={(event) => handleListItemClick(event, index)}
+                    selected={selectedItem.key === item.key}
+                    onClick={(event) => handleListItemClick(event, item)}
                 >
                     <ListItemIcon>
                         {item.icon}
