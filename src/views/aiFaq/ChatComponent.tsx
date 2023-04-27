@@ -147,15 +147,22 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
                         });
 
                         setGptChat((prevValue) => {
+                            const newmessage = [{ role: 'user', content: res.value }]
+                            // 按换行符分割
+                            const newmessageArr = message.content.split('/n')
+                            // 按换行符分割后的数组
+                            const newmessageArrList = newmessageArr.map((item: string) => {
+                                return {
+                                    role: 'assistant',
+                                    content: item,
+                                }
+                            })
+                            newmessage.push(...newmessageArrList)
                             return {
                                 ...prevValue,
                                 [activeKey]: [
                                     ...prevValue[activeKey as keyof typeof gptChat],
-                                    { role: 'user', content: res.value },
-                                    {
-                                        role: 'assistant',
-                                        content: message.content,
-                                    },
+                                    ...newmessage,
                                 ],
                             };
                         });
