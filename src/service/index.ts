@@ -13,7 +13,7 @@ const chatGPTRequest = new ZMRequest(
         timeout: TIME_OUT,
         interceptors: {},
         headers: {
-            Authorization: 'Bearer ' + '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',
+            Authorization: 'Bearer ' + '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',
         },
     }, {
     model: 'gpt-3.5-turbo',

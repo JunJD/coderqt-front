@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import {
     Box,
     // Button,
@@ -30,6 +30,11 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
     const [gptChat, setGptChat] = useRecoilState(gptStore);
 
     const activeKey = useMemo(() => selectedItem.key, [selectedItem.key]);
+
+    const istranslate = useMemo(
+        () => activeKey === 'translateChat',
+        [activeKey],
+    );
 
     const activeMessage = useMemo(() => {
         return Object.keys(gptChat).includes(activeKey)
@@ -63,23 +68,57 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
 
     useEffect(() => {
         chatCtl.setMessages(
-            activeMessage.map((item) => ({
-                type: 'text',
-                content: item.content,
-                self: item.role === 'user',
-            })),
+            activeMessage
+                .filter((item) => item.role !== 'system')
+                .map((item) => ({
+                    type: 'text',
+                    content: item.content,
+                    self: item.role === 'user',
+                })),
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeMessage]);
 
     React.useEffect(() => {
-        echo(chatCtl, activeMessage);
+        echo(chatCtl, activeMessage, istranslate);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [chatCtl, activeMessage]);
+    }, [chatCtl, activeMessage, istranslate]);
 
     const echo = useCallback(
-        async (chatCtl: ChatController, activeMessage: messageItem[] = []) => {
-            chatCtl.setActionRequest(
+        async (
+            chatCtl: ChatController,
+            activeMessage: messageItem[] = [],
+            istranslate = false,
+        ) => {
+            let language: any;
+            if (istranslate) {
+                const options = [
+                    {
+                        value: 'yw',
+                        text: '英文',
+                    },
+                    {
+                        value: 'ey',
+                        text: '俄语',
+                    },
+                    {
+                        value: 'alb',
+                        text: '阿拉伯语',
+                    },
+                ]
+                language = await chatCtl.setActionRequest({
+                    type: 'select',
+                    options,
+                })
+                chatCtl.addMessage({
+                    type: 'text',
+                    content: `已选择${language.value},请开始输入:`,
+                    self: false,
+                    createdAt: new Date(),
+                });
+            }
+
+            await chatCtl.setActionRequest(
                 { type: 'text', always: true },
                 async (res) => {
                     await chatCtl.addMessage({
@@ -88,32 +127,30 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
                         self: false,
                         createdAt: new Date(),
                     });
-                    const len = chatCtl.getMessages().length;
+                    const len = chatCtl.getMessages().length - 1;
                     try {
+                        
+                        res.value = language
+                        ? `将下面的话翻译成${language.value}:/n${res.value}`
+                        : res.value;
+                        
                         const message = await gptquery([
                             ...activeMessage,
                             { role: 'user', content: res.value },
                         ]);
 
-                        await chatCtl.addMessage({
-                            type: 'text',
-                            content: `${message.content}`,
-                            self: false,
-                            createdAt: new Date(),
-                        });
-
                         await chatCtl.updateMessage(len, {
                             type: 'text',
                             content: `${message.content}`,
                             self: false,
-                            createdAt: new Date(),
+                            updatedAt: new Date(),
                         });
 
                         setGptChat((prevValue) => {
                             return {
                                 ...prevValue,
-                                casualChat: [
-                                    ...prevValue.casualChat,
+                                [activeKey]: [
+                                    ...prevValue[activeKey as keyof typeof gptChat],
                                     { role: 'user', content: res.value },
                                     {
                                         role: 'assistant',
@@ -127,14 +164,14 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
                             type: 'text',
                             content: '请求错误',
                             self: false,
-                            createdAt: new Date(),
+                            updatedAt: new Date(),
                         });
 
                         setGptChat((prevValue) => {
                             return {
                                 ...prevValue,
-                                casualChat: [
-                                    ...prevValue.casualChat,
+                                [activeKey]: [
+                                    ...prevValue[activeKey as keyof typeof gptChat],
                                     { role: 'system', content: '请求错误' },
                                 ],
                             };
@@ -144,7 +181,7 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
             );
         },
         // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+        [activeKey],
     );
 
     return (
