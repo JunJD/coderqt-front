@@ -13,7 +13,6 @@ const chatGPTRequest = new ZMRequest(
         timeout: TIME_OUT,
         interceptors: {},
         headers: {
-            // 备用：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
             Authorization: 'Bearer ' + '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',
         },
     }, {

@@ -18,3 +18,18 @@ export interface AxiosResponseData<T = any> {
     msg: string;
     error: any
 }
+
+export interface AxiosGPTResponseData<T = any> {
+    choices: T;
+    completion: string;
+    created: number;
+    id: string;
+    model: string;
+    object: string;
+    search_model: string;
+    selected_model: string;
+    status: string;
+    stream: boolean;
+    temperature: number;
+    time: number;
+}
