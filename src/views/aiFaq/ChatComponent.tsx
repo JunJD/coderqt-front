@@ -39,12 +39,13 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
     );
 
     const gptquery = async (messages: messageItem[]) => {
-        const res: any = await chatGPTRequest.post({
+        const res = await chatGPTRequest.post({
             url: '/v1/chat/completions',
             data: {
                 messages,
             },
         });
+
         if (res?.id) {
             return res.choices[0].message;
         } else {

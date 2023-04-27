@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import type { AxiosResponseData, ZMRequestConfig } from './type';
+import type { AxiosGPTResponseData, AxiosResponseData, ZMRequestConfig } from './type';
 
 /**
  *  1.拦截器进行精细控制
@@ -62,17 +62,17 @@ class ZMRequest {
         });
     }
 
-    get<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
-        return this.request<AxiosResponseData<T>>({ ...config, method: 'GET' });
+    get<T>(config: ZMRequestConfig<AxiosResponseData<T> & AxiosGPTResponseData<T>>) {
+        return this.request<AxiosResponseData<T> & AxiosGPTResponseData<T>>({ ...config, method: 'GET' });
     }
-    post<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
-        return this.request<AxiosResponseData<T>>({ ...config, method: 'POST' });
+    post<T>(config: ZMRequestConfig<AxiosResponseData<T> & AxiosGPTResponseData<T>>) {
+        return this.request<AxiosResponseData<T> & AxiosGPTResponseData<T>>({ ...config, method: 'POST' });
     }
-    delete<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
-        return this.request<AxiosResponseData<T>>({ ...config, method: 'DELETE' });
+    delete<T>(config: ZMRequestConfig<AxiosResponseData<T> & AxiosGPTResponseData<T>>) {
+        return this.request<AxiosResponseData<T> & AxiosGPTResponseData<T>>({ ...config, method: 'DELETE' });
     }
-    patch<T>(config: ZMRequestConfig<AxiosResponseData<T>>) {
-        return this.request<AxiosResponseData<T>>({ ...config, method: 'PATCH' });
+    patch<T>(config: ZMRequestConfig<AxiosResponseData<T> & AxiosGPTResponseData<T>>) {
+        return this.request<AxiosResponseData<T> & AxiosGPTResponseData<T>>({ ...config, method: 'PATCH' });
     }
 }
 
