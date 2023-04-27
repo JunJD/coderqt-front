@@ -1,5 +1,5 @@
 let BASE_URL = '';
-const TIME_OUT = 10000;
+const TIME_OUT = 500000;
 
 if (import.meta.env.PROD) {
     // 生产环境

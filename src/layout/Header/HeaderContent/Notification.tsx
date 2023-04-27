@@ -104,70 +104,6 @@ const Notification = () => {
                     icon: <GiftOutlined />,
                     secondary: 'Nike classic cortez',
                 },
-                {
-                    id: 1,
-                    type: 'success',
-                    title: '新订单已收到',
-                    subtitle: '1小时前',
-                    icon: <GiftOutlined />,
-                    secondary: 'Nike Air Max 270',
-                },
-                {
-                    id: 2,
-                    type: 'warning',
-                    title: '新消息',
-                    subtitle: '2小时前',
-                    icon: <MessageOutlined />,
-                    secondary: '来自约翰·多伊的：你好，今天晚上有...',
-                },
-                {
-                    id: 3,
-                    type: 'error',
-                    title: '您的物品已发货',
-                    subtitle: '5小时前',
-                    icon: <SettingOutlined />,
-                    secondary: 'Nike air max 270',
-                },
-                {
-                    id: 4,
-                    type: 'primary',
-                    title: '新订单已收到',
-                    subtitle: '1天前',
-                    icon: <GiftOutlined />,
-                    secondary: 'Nike classic cortez',
-                },
-                {
-                    id: 1,
-                    type: 'success',
-                    title: '新订单已收到',
-                    subtitle: '1小时前',
-                    icon: <GiftOutlined />,
-                    secondary: 'Nike Air Max 270',
-                },
-                {
-                    id: 2,
-                    type: 'warning',
-                    title: '新消息',
-                    subtitle: '2小时前',
-                    icon: <MessageOutlined />,
-                    secondary: '来自约翰·多伊的：你好，今天晚上有...',
-                },
-                {
-                    id: 3,
-                    type: 'error',
-                    title: '您的物品已发货',
-                    subtitle: '5小时前',
-                    icon: <SettingOutlined />,
-                    secondary: 'Nike air max 270',
-                },
-                {
-                    id: 4,
-                    type: 'primary',
-                    title: '新订单已收到',
-                    subtitle: '1天前',
-                    icon: <GiftOutlined />,
-                    secondary: 'Nike classic cortez',
-                },
             ]);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
@@ -184,18 +120,10 @@ const Notification = () => {
         setOpen(false);
     };
 
-    const iconBackColorOpen = 'grey.300';
-    const iconBackColor = 'grey.100';
-
     return (
         <Box sx={{ flexShrink: 0, ml: 0.75 }}>
             <IconButton
                 disableRipple
-                color="secondary"
-                sx={{
-                    color: 'text.primary',
-                    bgcolor: open ? iconBackColorOpen : iconBackColor,
-                }}
                 aria-label="open profile"
                 ref={anchorRef}
                 // 用于标识当前元素的id

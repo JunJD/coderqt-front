@@ -2,14 +2,22 @@
 import { Box, Chip, Grid, Stack, Typography } from '@mui/material';
 
 // project import
-import MainCard from 'components/MainCard';
+import MainCard from '@/compontents/MainCard';
 
 // assets
 import { RiseOutlined, FallOutlined } from '@ant-design/icons';
+import { FC } from 'react';
 
-// ==============================|| STATISTICS - ECOMMERCE CARD  ||============================== //
+interface AnalyticEcommerceProps {
+    color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
+    title: string;
+    count: string;
+    percentage?: number;
+    isLoss?: boolean;
+    extra: string;
+}
 
-const AnalyticEcommerce = ({
+const AnalyticEcommerce: FC<AnalyticEcommerceProps> = ({
     color,
     title,
     count,
@@ -31,7 +39,7 @@ const AnalyticEcommerce = ({
                 {percentage && (
                     <Grid item>
                         <Chip
-                            variant="combined"
+                            // variant="combined"
                             color={color}
                             icon={
                                 <>
@@ -63,22 +71,17 @@ const AnalyticEcommerce = ({
         </Stack>
         <Box sx={{ pt: 2.25 }}>
             <Typography variant="caption" color="textSecondary">
-                You made an extra{' '}
+                今年比去年多{' '}
                 <Typography
                     component="span"
                     variant="caption"
                     sx={{ color: `${color || 'primary'}.main` }}
                 >
                     {extra}
-                </Typography>{' '}
-                this year
+                </Typography>
             </Typography>
         </Box>
     </MainCard>
 );
-
-AnalyticEcommerce.defaultProps = {
-    color: 'primary',
-};
 
 export default AnalyticEcommerce;

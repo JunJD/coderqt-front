@@ -18,7 +18,7 @@ const Navigation = () => {
                         color="error"
                         align="center"
                     >
-                        Fix - Navigation Group
+                        Fix - 导航 Group
                     </Typography>
                 );
         }

@@ -49,7 +49,7 @@ function Contexify() {
     return (
         <div>
             <p style={{ cursor: 'pointer' }} onContextMenu={handleContextMenu}>
-                {auth.token}
+                {auth.token + '1' + '右键点击我'}
             </p>
 
             <Menu id={MENU_ID}>

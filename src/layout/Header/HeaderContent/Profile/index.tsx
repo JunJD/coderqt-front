@@ -186,8 +186,6 @@ const Profile = () => {
                                                                 animationData={
                                                                     JSONData
                                                                 }
-                                                                height={60}
-                                                                width={60}
                                                             />
                                                         </Avatar>
                                                         <Stack>

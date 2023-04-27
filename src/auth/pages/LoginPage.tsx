@@ -1,4 +1,4 @@
-import zmRequest from '@/service';
+import { zmRequest } from '@/service';
 import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -23,7 +23,11 @@ export default function SignInPage() {
 
         // 将 formData 转换为对象
         const data = Object.fromEntries(formData.entries());
-        const res = await zmRequest.post({
+        const res = await zmRequest.post<{
+            accessToken: string,
+            sub: string,
+            username: string
+        }>({
             url: '/auth/login',
             data: {
                 phoneNumber: data.phoneNumber,

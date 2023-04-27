@@ -1,7 +1,7 @@
 // ==============================|| THEME CONFIG  ||============================== //
 
 const config = {
-    defaultPath: '/dashboard/default',
+    defaultPath: '/main/aiFaq',
     fontFamily: `'Public Sans', sans-serif`,
     i18n: 'en',
     miniDrawer: false,
@@ -9,6 +9,7 @@ const config = {
     mode: 'light',
     presetColor: 'default',
     themeDirection: 'ltr',
+    title: 'HELLO AI',
 };
 
 export default config;

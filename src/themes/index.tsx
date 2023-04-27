@@ -19,7 +19,7 @@ interface ThemeCustomizationProps {
 }
 
 const ThemeCustomization: FC<ThemeCustomizationProps> = ({ children }) => {
-    const { light } = useRecoilValue(mainStore);
+    const { light, barScrollTop } = useRecoilValue(mainStore);
 
     // 主题
     const theme = Palette(light ? 'light' : 'dark');
@@ -49,10 +49,16 @@ const ThemeCustomization: FC<ThemeCustomizationProps> = ({ children }) => {
                 },
             },
             palette: theme.palette,
-            customShadows: themeCustomShadows,
+            customShadows: {
+                ...themeCustomShadows,
+                barScrollTopShadow:
+                    barScrollTop > 0
+                        ? `1px -1px 20px -4px ${theme.palette.text.disabled}`
+                        : 'none',
+            },
             typography: themeTypography,
         }),
-        [theme, themeTypography, themeCustomShadows],
+        [theme.palette, barScrollTop, themeCustomShadows, themeTypography],
     );
 
     const themes = createTheme(themeOptions);

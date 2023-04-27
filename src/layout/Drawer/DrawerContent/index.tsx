@@ -3,8 +3,6 @@ import NavCard from './NavCard';
 import Navigation from './Navigation';
 import SimpleBar from '../../../compontents/third-party/SimpleBar';
 
-// ==============================|| DRAWER CONTENT ||============================== //
-
 const DrawerContent = () => (
     <SimpleBar
         sx={{

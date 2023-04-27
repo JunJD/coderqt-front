@@ -1,23 +1,31 @@
 // assets
-import { DashboardOutlined } from '@ant-design/icons';
+import { LaptopOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
-    DashboardOutlined,
+    LaptopOutlined,
 };
 
-const dashboard = {
+const dashboard: IMenuItem = {
     id: 'group-dashboard',
-    title: 'Navigation',
+    title: '导航',
     type: 'group',
     children: [
         {
-            id: 'dashboard',
-            title: 'Dashboard',
+            id: '/main/dashboard',
+            title: '首页',
             type: 'item',
-            url: '/main/contexify',
-            icon: icons.DashboardOutlined,
+            url: '/main/dashboard',
+            icon: icons.LaptopOutlined,
             breadcrumbs: false,
+        },
+        {
+            id: '/main/aiaq',
+            title: 'AIAQ',
+            type: 'item',
+            url: '/main/aiFaq',
+            icon: icons.LaptopOutlined,
         },
     ],
 };

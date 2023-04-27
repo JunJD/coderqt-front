@@ -1,5 +1,6 @@
 // assets
 import { LoginOutlined, ProfileOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
@@ -7,22 +8,22 @@ const icons = {
     ProfileOutlined,
 };
 
-const pages = {
+const pages: IMenuItem = {
     id: 'authentication',
-    title: 'Authentication',
+    title: '身份验证',
     type: 'group',
     children: [
         {
-            id: 'login1',
-            title: 'Login',
+            id: 'login',
+            title: '登录页面',
             type: 'item',
             url: '/login',
             icon: icons.LoginOutlined,
             target: true,
         },
         {
-            id: 'register1',
-            title: 'Register',
+            id: 'register',
+            title: '注册页面',
             type: 'item',
             url: '/register',
             icon: icons.ProfileOutlined,

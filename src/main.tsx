@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-
+import { SnackbarProvider } from 'notistack';
 import App from './App';
 
 // 样式
@@ -15,7 +15,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
         <RecoilRoot>
             <Inspect disabled={import.meta.env.MODE === 'production'}>
-                <App />
+                <SnackbarProvider maxSnack={3}>
+                    <App />
+                </SnackbarProvider>
             </Inspect>
         </RecoilRoot>
     </BrowserRouter>,

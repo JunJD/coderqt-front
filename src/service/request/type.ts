@@ -11,3 +11,10 @@ export interface ZMInterceptors<T = AxiosResponse> {
 export interface ZMRequestConfig<T = AxiosResponse> extends AxiosRequestConfig {
     interceptors?: ZMInterceptors<T>;
 }
+
+export interface AxiosResponseData<T = any> {
+    success: boolean;
+    result: T;
+    msg: string;
+    error: any
+}

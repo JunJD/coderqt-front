@@ -1,5 +1,6 @@
 // assets
 import { ChromeOutlined, QuestionOutlined } from '@ant-design/icons';
+import { IMenuItem } from '.';
 
 // icons
 const icons = {
@@ -7,9 +8,9 @@ const icons = {
     QuestionOutlined,
 };
 
-const support = {
+const support: IMenuItem = {
     id: 'support',
-    title: 'Support',
+    title: '测试页面',
     type: 'group',
     children: [
         {
@@ -23,10 +24,34 @@ const support = {
             id: 'documentation',
             title: 'Documentation',
             type: 'item',
-            url: 'www.baidu.com',
+            url: 'https://www.baidu.com',
             icon: icons.QuestionOutlined,
             external: true,
             target: true,
+        },
+        {
+            id: 'collapse-page',
+            title: 'collapse Page',
+            type: 'collapse',
+            icon: icons.ChromeOutlined,
+            children: [
+                {
+                    id: 'collapse-page-1',
+                    title: 'Sample Page',
+                    type: 'item',
+                    url: '/main/contexify',
+                    icon: icons.ChromeOutlined,
+                },
+                {
+                    id: 'collapse-2',
+                    title: 'collapse-2',
+                    type: 'item',
+                    url: 'https://www.baidu.com',
+                    icon: icons.QuestionOutlined,
+                    external: true,
+                    target: true,
+                },
+            ],
         },
     ],
 };

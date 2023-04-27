@@ -61,17 +61,42 @@ const Palette = (mode: PaletteMode) => {
                   }
                 : {
                       text: {
-                          primary: paletteColor.grey[700],
-                          secondary: paletteColor.grey[500],
+                          primary: paletteColor.grey[100],
+                          secondary: paletteColor.grey[300],
                           disabled: paletteColor.grey[400],
                       },
+                      // primary: {
+                      //     main: paletteColor.grey[100],
+                      // },
+                      // warning: {
+                      //     main: paletteColor.grey[100],
+                      // },
+                      // info: {
+                      //     main: paletteColor.grey[100],
+                      // },
+                      // error: {
+                      //     main: paletteColor.grey[100],
+                      // },
+                      // success: {
+                      //     main: paletteColor.grey[100],
+                      // },
+
                       action: {
-                          disabled: paletteColor.grey[300],
+                          disabled: 'rgb(40, 36, 61)',
+                          // hover: 'rgb(40, 36, 61)',
+                          // selected: 'rgb(40, 36, 61)',
+                          // disabledBackground: 'rgb(40, 36, 61)',
+                          // hoverOpacity: 0.04,
+                          // selectedOpacity: 0.08,
+                          // disabledOpacity: 0.38,
+                          // focus: 'rgb(40, 36, 61)',
+                          // focusOpacity: 0.12,
+                          // activatedOpacity: 0.12,
                       },
-                      divider: paletteColor.grey[200],
+                      divider: 'rgb(40, 36, 61)',
                       background: {
-                          paper: paletteColor.grey[0],
-                          default: paletteColor.grey.A50,
+                          paper: 'rgb(40, 36, 61)',
+                          default: 'rgb(30, 27, 47)',
                       },
                   }),
         },
