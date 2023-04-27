@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    Grid,
+    Grid, Toolbar,
 } from '@mui/material';
 // import {
 //     Accordion,
@@ -37,6 +37,7 @@ const AiFaq = () => {
                     </Grid>
                 </Grid>
             </Grid>
+            <Toolbar />
         </Grid>
     );
 };

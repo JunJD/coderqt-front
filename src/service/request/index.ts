@@ -14,10 +14,12 @@ import type { AxiosGPTResponseData, AxiosResponseData, ZMRequestConfig } from '.
 class ZMRequest {
     instance: AxiosInstance;
     defaultParams: any = {};
+    isGPT: boolean;
     // request实例 => axios的实例
-    constructor(config: ZMRequestConfig, defaultParams?: any) {
+    constructor(config: ZMRequestConfig, defaultParams?: any, isGPT = false) {
         this.instance = axios.create(config);
         this.defaultParams = defaultParams;
+        this.isGPT = isGPT;
         // 每个instance实例都添加拦截器
         this.instance.interceptors.request.use(
             (config) => {
@@ -46,7 +48,7 @@ class ZMRequest {
             config = config.interceptors.requestSuccessFn(config);
         }
         // 返回Promise
-        return new Promise<T>((resolve) => {
+        return new Promise<T>((resolve, reject) => {
             this.instance
                 .request<any, T>({...config, data: {...this.defaultParams, ...config.data}})
                 .then((res) => {
@@ -57,7 +59,11 @@ class ZMRequest {
                     resolve(res);
                 })
                 .catch((err) => {
-                    throw new Error(err.message ?? '请求失败');
+                    if (this.isGPT) {
+                        reject(err);
+                    }  else {
+                        throw new Error(err.message ?? '请求失败');
+                    }
                 });
         });
     }

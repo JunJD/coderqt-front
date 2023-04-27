@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import {
     Box,
     // Button,
@@ -26,11 +26,16 @@ interface ChatComponentProps {
 export function ChatComponent(props: ChatComponentProps): React.ReactElement {
     const { selectedItem } = props;
     const theme = useTheme();
+
     const [gptChat, setGptChat] = useRecoilState(gptStore);
-    const keyRef = useRef(selectedItem.key);
-    const casualChatRef = useRef(
-        gptChat[keyRef.current as keyof typeof gptChat],
-    );
+
+    const activeKey = useMemo(() => selectedItem.key, [selectedItem.key]);
+
+    const activeMessage = useMemo(() => {
+        return Object.keys(gptChat).includes(activeKey)
+            ? gptChat[activeKey as keyof typeof gptChat]
+            : [];
+    }, [activeKey, gptChat]);
 
     const [chatCtl] = React.useState(
         new ChatController({
@@ -57,60 +62,94 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
     };
 
     useEffect(() => {
-        chatCtl.addMessage({
-            type: 'text',
-            content: `请输入一些内容。`,
-            self: false,
-        });
-        return () => {
-            chatCtl.clearMessages();
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
-        casualChatRef.current.forEach(async (item) => {
-            chatCtl.addMessage({
+        chatCtl.setMessages(
+            activeMessage.map((item) => ({
                 type: 'text',
                 content: item.content,
                 self: item.role === 'user',
-            });
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedItem.key]);
-
-    React.useMemo(async () => {
-        chatCtl.setActionRequest(
-            { type: 'text', always: true },
-            async (res) => {
-                const message = await gptquery([
-                    ...gptChat.casualChat,
-                    { role: 'user', content: res.value },
-                ]);
-
-                chatCtl.addMessage({
-                    type: 'text',
-                    content: `${message.content}`,
-                    self: false,
-                });
-
-                setGptChat((prevValue) => {
-                    return {
-                        ...prevValue,
-                        casualChat: [
-                            ...prevValue.casualChat,
-                            { role: 'user', content: res.value },
-                            { role: 'assistant', content: message.content },
-                        ],
-                    };
-                });
-            },
+            })),
         );
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [chatCtl, gptChat]);
+    }, [activeMessage]);
+
+    React.useEffect(() => {
+        echo(chatCtl, activeMessage);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [chatCtl, activeMessage]);
+
+    const echo = useCallback(
+        async (chatCtl: ChatController, activeMessage: messageItem[] = []) => {
+            chatCtl.setActionRequest(
+                { type: 'text', always: true },
+                async (res) => {
+                    await chatCtl.addMessage({
+                        type: 'text',
+                        content: '正在思考中...',
+                        self: false,
+                        createdAt: new Date(),
+                    });
+                    const len = chatCtl.getMessages().length;
+                    try {
+                        const message = await gptquery([
+                            ...activeMessage,
+                            { role: 'user', content: res.value },
+                        ]);
+
+                        await chatCtl.addMessage({
+                            type: 'text',
+                            content: `${message.content}`,
+                            self: false,
+                            createdAt: new Date(),
+                        });
+
+                        await chatCtl.updateMessage(len, {
+                            type: 'text',
+                            content: `${message.content}`,
+                            self: false,
+                            createdAt: new Date(),
+                        });
+
+                        setGptChat((prevValue) => {
+                            return {
+                                ...prevValue,
+                                casualChat: [
+                                    ...prevValue.casualChat,
+                                    { role: 'user', content: res.value },
+                                    {
+                                        role: 'assistant',
+                                        content: message.content,
+                                    },
+                                ],
+                            };
+                        });
+                    } catch (error) {
+                        await chatCtl.updateMessage(len, {
+                            type: 'text',
+                            content: '请求错误',
+                            self: false,
+                            createdAt: new Date(),
+                        });
+
+                        setGptChat((prevValue) => {
+                            return {
+                                ...prevValue,
+                                casualChat: [
+                                    ...prevValue.casualChat,
+                                    { role: 'system', content: '请求错误' },
+                                ],
+                            };
+                        });
+                    }
+                },
+            );
+        },
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
 
     return (
         <Box
+            component="div"
             sx={{
                 height: '100%',
                 borderRadius: '10px',
@@ -119,6 +158,7 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
             }}
         >
             <Box
+                component="div"
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -126,7 +166,7 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
                     marginRight: 'auto',
                 }}
             >
-                <Typography sx={{ p: 1 }}>
+                <Box sx={{ p: 1 }}>
                     <Typography
                         sx={{
                             fontSize: '1.5rem',
@@ -139,15 +179,16 @@ export function ChatComponent(props: ChatComponentProps): React.ReactElement {
                         {selectedItem.icon ?? OptionsItem[0].icon}
                         {selectedItem.text ?? OptionsItem[0].text}
                     </Typography>
-                </Typography>
+                </Box>
                 <Divider />
                 <Box
+                    component="div"
                     sx={{
                         flex: '1 1 0%',
                         '&>.MuiBox-root>.MuiBox-root': {
                             padding: '0.5rem',
                             maxHeight: theme.spacing(50),
-                            
+
                             overflow: 'auto',
                             '&::-webkit-scrollbar': {
                                 width: 6,
